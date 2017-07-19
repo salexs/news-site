@@ -5,9 +5,10 @@ export class News{
     text: string;
     author: string;
     date: string;
-     
+    id: number;
+
     constructor(title: string, text: string) {
-  
+        this.id = Math.floor(Math.random() * Date.now());
         this.title = title;
         this.text = text;
     }
@@ -23,7 +24,7 @@ export class News{
                     <div class="col-sm-5 col-md-3" *ngFor="let news of newsList">
                         <div class="thumbnail">
                             <div class="caption">
-                                <span class="glyphicons glyphicons-remove"></span>
+                                <i class="fa fa-trash-o" aria-hidden="true" (click)="delNews(news)"></i>
                                 <h3>{{news.title}}</h3>
                                 <p>{{news.text}}</p>
                                 <p><i>Author: {{news.author}}</i></p>
@@ -37,8 +38,8 @@ export class News{
 export class AppComponent { 
     newsList: News[] = 
     [
-        {title:"Title",text:"MyText",author:"Alex",date:"23/4/2017"},
-        {title:"Title2",text:"MyText2",author:"Alex",date:"23/4/2017"}
+        {title:"Title",text:"MyText",author:"Alex",date:"23/4/2017",id:3212},
+        {title:"Title2",text:"MyText2",author:"Alex",date:"23/4/2017",id:34435}
     ];
     addNews(title: string,text: string): void {
          
@@ -47,5 +48,14 @@ export class AppComponent {
         if(title==null || title==undefined || title.trim()=="")
             return;
         this.newsList.push(new News(title,text));
+    }
+    delNews(news: News): void {
+        for (var i = 0;i < this.newsList.length;i++){
+            if (this.newsList[i].id == news.id) {
+                console.log(news.id);
+                this.newsList.splice(i,1);
+                return;
+            }
+        } ;
     }
 }
