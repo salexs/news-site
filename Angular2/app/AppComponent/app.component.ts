@@ -11,6 +11,7 @@ export class News{
         this.id = Math.floor(Math.random() * Date.now());
         this.title = title;
         this.text = text;
+        this.author = "Alex";
     }
 }
 
