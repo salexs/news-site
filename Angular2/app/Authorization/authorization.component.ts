@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth-service.service';
 
 @Component({
     selector: 'authorization',
@@ -20,15 +21,18 @@ import { Component } from '@angular/core';
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default">Войти</button>
+                    <button type="submit" class="btn btn-default">Войти {{name}}</button>
                     </div>
                 </div>
             </div>
         </div>
 
-     `  
+     `,
+     providers: [AuthService]
 })
 
 export class AuthorizationComponent {
-    name = '';
+    constructor(private authService: AuthService) {}
+    name = this.authService.CheckAuth();
+
 }

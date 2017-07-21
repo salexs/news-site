@@ -9,23 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var forms_1 = require('@angular/forms');
-var app_component_1 = require('./AppComponent/app.component');
-var authorization_component_1 = require('./Authorization/authorization.component');
 var http_1 = require('@angular/http');
-var AppModule = (function () {
-    function AppModule() {
+require('rxjs/add/operator/toPromise');
+var AuthService = (function () {
+    function AuthService(http) {
+        this.http = http;
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule],
-            declarations: [authorization_component_1.AuthorizationComponent, app_component_1.AppComponent],
-            bootstrap: [authorization_component_1.AuthorizationComponent, app_component_1.AppComponent]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    AuthService.prototype.CheckAuth = function () {
+        return this.http
+            .get('http://localhost:8000/api/news/')
+            .toPromise()
+            .then(function (response) { return console.log(response.json()); })
+            .catch(this.handleError);
+    };
+    AuthService.prototype.handleError = function (error) {
+        console.error('An error occurred', error);
+        return Promise.reject(error.message || error);
+    };
+    AuthService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [http_1.Http])
+    ], AuthService);
+    return AuthService;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.AuthService = AuthService;
+//# sourceMappingURL=auth-service.service.js.map
