@@ -19,7 +19,6 @@ class UserCreateAPIView(CreateAPIView):
     queryset = User.objects.all()
 
 class UserLoginAPIView(APIView):
-    permission_classes = [IsAuthenticated]
     serializer_class = UserLoginSerializer
     def post(self, request, *args, **kwargs):
         data = request.data

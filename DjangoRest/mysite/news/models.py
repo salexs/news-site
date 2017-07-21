@@ -8,4 +8,4 @@ class News(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
     )
-    publish_date = models.DateField()
+    publish_date = models.DateField(auto_now=True)
