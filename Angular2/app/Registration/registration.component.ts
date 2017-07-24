@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { RegistrationService } from './registration-service.service';
 import { Response} from '@angular/http';
 import {User} from './user'
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'registration',
@@ -44,12 +45,12 @@ import {User} from './user'
 
 
 export class RegistrationComponent {
-    constructor(private registrationService: RegistrationService) {}
+    constructor(private registrationService: RegistrationService,private router: Router) {}
     user: User = new User;
     registr(user:User) {
         this.registrationService.postData(user)
                 .subscribe((data) => {
-                    console.log('sada')
+                    this.router.navigate(['login']);
 
                 });
     }   

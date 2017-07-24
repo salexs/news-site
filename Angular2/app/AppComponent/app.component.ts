@@ -18,7 +18,6 @@ export class News{
 @Component({
     selector: 'my-app',
     template: `<label>Create news:</label>
-                 <router-outlet></router-outlet>
                  <input [(ngModel)]="title" placeholder="Title">
                  <input [(ngModel)]="text" placeholder="Text">
                  <input class="btn btn-default" type="submit" value="Add News" (click)="addNews(title, text)">

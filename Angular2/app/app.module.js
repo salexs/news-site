@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var app_component_1 = require('./AppComponent/app.component');
 var registration_component_1 = require('./Registration/registration.component');
 var authorization_component_1 = require('./Authorization/authorization.component');
+var base_component_1 = require('./base.component');
 var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
 var appRoutes = [
@@ -27,8 +28,8 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes)],
-            declarations: [app_component_1.AppComponent, registration_component_1.RegistrationComponent, authorization_component_1.AuthorizationComponent],
-            bootstrap: [app_component_1.AppComponent],
+            declarations: [app_component_1.AppComponent, base_component_1.BaseComponent, registration_component_1.RegistrationComponent, authorization_component_1.AuthorizationComponent],
+            bootstrap: [base_component_1.BaseComponent],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

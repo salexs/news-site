@@ -11,15 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var registration_service_service_1 = require('./registration-service.service');
 var user_1 = require('./user');
+var router_1 = require('@angular/router');
 var RegistrationComponent = (function () {
-    function RegistrationComponent(registrationService) {
+    function RegistrationComponent(registrationService, router) {
         this.registrationService = registrationService;
+        this.router = router;
         this.user = new user_1.User;
     }
     RegistrationComponent.prototype.registr = function (user) {
+        var _this = this;
         this.registrationService.postData(user)
             .subscribe(function (data) {
-            console.log('sada');
+            _this.router.navigate(['login']);
         });
     };
     RegistrationComponent = __decorate([
@@ -28,7 +31,7 @@ var RegistrationComponent = (function () {
             template: "\n        \n        <div class=\"row auth\">\n            <span *ngIf=\"user_obj\">\n                Hello, {{user_obj.username}}\n            </span>\n            <div class=\"col-md-6 col-md-offset-3\">\n                <div class=\"form-group\">\n                    <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Username</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Username\" [(ngModel)]=\"user.username\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"user.email\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\" [(ngModel)]=\"user.password\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-sm-offset-2 col-sm-10\">\n                    <button type=\"submit\" class=\"btn btn-default\" (click)=\"registr(user)\">\u0412\u043E\u0439\u0442\u0438</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n     ",
             providers: [registration_service_service_1.RegistrationService]
         }), 
-        __metadata('design:paramtypes', [registration_service_service_1.RegistrationService])
+        __metadata('design:paramtypes', [registration_service_service_1.RegistrationService, router_1.Router])
     ], RegistrationComponent);
     return RegistrationComponent;
 }());

@@ -1,7 +1,16 @@
 {
     "git.ignoreLimitWarning": true,
+
+    // The following will hide the js and map files in the editor
+
     "files.exclude": {
-        "**/*.js": true,
-        "**/*.map": true
+        // include the defaults from VS Code
+        "**/.git": true,
+        "**/.DS_Store": true,
+
+        // exclude .js and .js.map files, when in a TypeScript project
+        "**/*.js": { "when": "$(basename).ts"},
+        "**/*.js.map": true
     }
+
 }

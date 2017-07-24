@@ -4,6 +4,7 @@ import { FormsModule }   from '@angular/forms';
 import { AppComponent }   from './AppComponent/app.component';
 import { RegistrationComponent } from './Registration/registration.component'
 import { AuthorizationComponent } from './Authorization/authorization.component';
+import { BaseComponent } from './base.component';
 import { HttpModule }   from '@angular/http';
 import {Routes, RouterModule} from '@angular/router';
 
@@ -15,7 +16,7 @@ const appRoutes: Routes =[
 
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
-    declarations: [ AppComponent, RegistrationComponent, AuthorizationComponent ],
-    bootstrap:    [ AppComponent ],
+    declarations: [ AppComponent, BaseComponent, RegistrationComponent, AuthorizationComponent ],
+    bootstrap:    [ BaseComponent ],
 })
 export class AppModule { }

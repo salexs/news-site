@@ -1,6 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { AuthService } from './auth-service.service';
 import { Response} from '@angular/http';
+import {Router} from '@angular/router';
 import {User} from './user'
 
 @Component({
@@ -9,10 +10,8 @@ import {User} from './user'
     template: `
         
         <div class="row auth">
-            <span *ngIf="user_obj">
-                Hello, {{user_obj.username}}
-            </span>
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-md-4 col-md-offset-3"><h2>Authorization</h2></div>
+            <div class="col-md-4 col-md-offset-3">
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
@@ -39,16 +38,20 @@ import {User} from './user'
 
 
 export class AuthorizationComponent {
-    constructor(private authService: AuthService) {}
+    constructor(private authService: AuthService,private router: Router) {}
+    
     user: User = new User;
     user_obj: User;
-
     check(user:User) {
         this.authService.postData(user)
-                .subscribe((data) => {
-                    console.log('sada')
-
-                });
+                .subscribe(
+                    data => {
+                        this.router.navigate(['']);
+                    },
+                    error => {
+                        console.log('error')
+                    }
+                );
     }   
 
 }
