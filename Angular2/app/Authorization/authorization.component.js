@@ -10,16 +10,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var auth_service_service_1 = require('./auth-service.service');
+var user_1 = require('./user');
 var AuthorizationComponent = (function () {
     function AuthorizationComponent(authService) {
         this.authService = authService;
-        this.name = this.authService.CheckAuth();
+        this.user = new user_1.User;
     }
+    AuthorizationComponent.prototype.check = function (user) {
+        this.authService.postData(user)
+            .subscribe(function (data) {
+            console.log('sada');
+        });
+    };
     AuthorizationComponent = __decorate([
         core_1.Component({
             selector: 'authorization',
             styleUrls: ['app/Authorization/authorization.component.css'],
-            template: "\n        <div class=\"row auth\">\n            <div class=\"col-md-6 col-md-offset-3\">\n                <div class=\"form-group\">\n                    <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-sm-offset-2 col-sm-10\">\n                    <button type=\"submit\" class=\"btn btn-default\">\u0412\u043E\u0439\u0442\u0438 {{name}}</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n     ",
+            template: "\n        \n        <div class=\"row auth\">\n            <span *ngIf=\"user_obj\">\n                Hello, {{user_obj.username}}\n            </span>\n            <div class=\"col-md-6 col-md-offset-3\">\n                <div class=\"form-group\">\n                    <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"user.username\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\" [(ngModel)]=\"user.password\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-sm-offset-2 col-sm-10\">\n                    <button type=\"submit\" class=\"btn btn-default\" (click)=\"check(user)\">\u0412\u043E\u0439\u0442\u0438</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n     ",
             providers: [auth_service_service_1.AuthService]
         }), 
         __metadata('design:paramtypes', [auth_service_service_1.AuthService])

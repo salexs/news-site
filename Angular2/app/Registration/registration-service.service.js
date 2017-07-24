@@ -12,22 +12,22 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 var Rx_1 = require('rxjs/Rx');
-var AuthService = (function () {
-    function AuthService(http) {
+var RegistrationService = (function () {
+    function RegistrationService(http) {
         this.http = http;
     }
-    AuthService.prototype.postData = function (obj) {
+    RegistrationService.prototype.postData = function (obj) {
         var body = JSON.stringify(obj);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-        return this.http.post("http://localhost:8000/api/users/login/", body, { headers: headers })
+        return this.http.post("http://localhost:8000/api/users/registration/", body, { headers: headers })
             .map(function (resp) { return resp.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error); });
     };
-    AuthService = __decorate([
+    RegistrationService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], AuthService);
-    return AuthService;
+    ], RegistrationService);
+    return RegistrationService;
 }());
-exports.AuthService = AuthService;
-//# sourceMappingURL=auth-service.service.js.map
+exports.RegistrationService = RegistrationService;
+//# sourceMappingURL=registration-service.service.js.map

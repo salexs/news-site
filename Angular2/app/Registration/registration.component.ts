@@ -1,11 +1,10 @@
 import { Component,OnInit } from '@angular/core';
-import { AuthService } from './auth-service.service';
+import { RegistrationService } from './registration-service.service';
 import { Response} from '@angular/http';
 import {User} from './user'
 
 @Component({
-    selector: 'authorization',
-    styleUrls: ['app/Authorization/authorization.component.css'],
+    selector: 'registration',
     template: `
         
         <div class="row auth">
@@ -14,9 +13,15 @@ import {User} from './user'
             </span>
             <div class="col-md-6 col-md-offset-3">
                 <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Username" [(ngModel)]="user.username">
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
                     <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="user.username">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="user.email">
                     </div>
                 </div>
                 <div class="form-group">
@@ -27,24 +32,22 @@ import {User} from './user'
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" (click)="check(user)">Войти</button>
+                    <button type="submit" class="btn btn-default" (click)="registr(user)">Войти</button>
                     </div>
                 </div>
             </div>
         </div>
 
      `,
-     providers: [AuthService]
+     providers: [RegistrationService]
 })
 
 
-export class AuthorizationComponent {
-    constructor(private authService: AuthService) {}
+export class RegistrationComponent {
+    constructor(private registrationService: RegistrationService) {}
     user: User = new User;
-    user_obj: User;
-
-    check(user:User) {
-        this.authService.postData(user)
+    registr(user:User) {
+        this.registrationService.postData(user)
                 .subscribe((data) => {
                     console.log('sada')
 
