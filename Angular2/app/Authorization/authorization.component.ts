@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { AuthService } from './auth-service.service';
 import { Response} from '@angular/http';
 import {Router} from '@angular/router';
-import {User} from './user'
+import {User} from './user' ;
+import {AlertService} from '../StatusAuth/status.service'
 
 @Component({
     selector: 'authorization',
@@ -38,10 +39,11 @@ import {User} from './user'
 
 
 export class AuthorizationComponent {
-    constructor(private authService: AuthService,private router: Router) {}
+    constructor(private authService: AuthService,private router: Router,private alertService: AlertService) {}
     
     user: User = new User;
     user_obj: User;
+
     check(user:User) {
         this.authService.postData(user)
                 .subscribe(
@@ -49,7 +51,7 @@ export class AuthorizationComponent {
                         this.router.navigate(['']);
                     },
                     error => {
-                        console.log('error')
+                        this.alertService.error(error['non_field_errors'][0]);
                     }
                 );
     }   

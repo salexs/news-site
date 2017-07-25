@@ -1,19 +1,5 @@
 import { Component } from '@angular/core';
      
-export class News{
-    title: string;
-    text: string;
-    author: string;
-    date: string;
-    id: number;
-
-    constructor(title: string, text: string) {
-        this.id = Math.floor(Math.random() * Date.now());
-        this.title = title;
-        this.text = text;
-        this.author = "Alex";
-    }
-}
 
 @Component({
     selector: 'my-app',
@@ -37,26 +23,6 @@ export class News{
                  `
 })
 export class AppComponent { 
-    newsList: News[] = 
-    [
-        {title:"Title",text:"MyText",author:"Alex",date:"23/4/2017",id:3212},
-        {title:"Title2",text:"MyText2",author:"Alex",date:"23/4/2017",id:34435}
-    ];
-    addNews(title: string,text: string): void {
-         
-        if(text==null || text==undefined || text.trim()=="")
-            return;
-        if(title==null || title==undefined || title.trim()=="")
-            return;
-        this.newsList.push(new News(title,text));
-    }
-    delNews(news: News): void {
-        for (var i = 0;i < this.newsList.length;i++){
-            if (this.newsList[i].id == news.id) {
-                console.log(news.id);
-                this.newsList.splice(i,1);
-                return;
-            }
-        } ;
-    }
+
+
 }

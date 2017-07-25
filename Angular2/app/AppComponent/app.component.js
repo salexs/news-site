@@ -9,40 +9,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var News = (function () {
-    function News(title, text) {
-        this.id = Math.floor(Math.random() * Date.now());
-        this.title = title;
-        this.text = text;
-        this.author = "Alex";
-    }
-    return News;
-}());
-exports.News = News;
 var AppComponent = (function () {
     function AppComponent() {
-        this.newsList = [
-            { title: "Title", text: "MyText", author: "Alex", date: "23/4/2017", id: 3212 },
-            { title: "Title2", text: "MyText2", author: "Alex", date: "23/4/2017", id: 34435 }
-        ];
     }
-    AppComponent.prototype.addNews = function (title, text) {
-        if (text == null || text == undefined || text.trim() == "")
-            return;
-        if (title == null || title == undefined || title.trim() == "")
-            return;
-        this.newsList.push(new News(title, text));
-    };
-    AppComponent.prototype.delNews = function (news) {
-        for (var i = 0; i < this.newsList.length; i++) {
-            if (this.newsList[i].id == news.id) {
-                console.log(news.id);
-                this.newsList.splice(i, 1);
-                return;
-            }
-        }
-        ;
-    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',

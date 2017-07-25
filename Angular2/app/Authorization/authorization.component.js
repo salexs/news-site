@@ -12,10 +12,12 @@ var core_1 = require('@angular/core');
 var auth_service_service_1 = require('./auth-service.service');
 var router_1 = require('@angular/router');
 var user_1 = require('./user');
+var status_service_1 = require('../StatusAuth/status.service');
 var AuthorizationComponent = (function () {
-    function AuthorizationComponent(authService, router) {
+    function AuthorizationComponent(authService, router, alertService) {
         this.authService = authService;
         this.router = router;
+        this.alertService = alertService;
         this.user = new user_1.User;
     }
     AuthorizationComponent.prototype.check = function (user) {
@@ -24,7 +26,7 @@ var AuthorizationComponent = (function () {
             .subscribe(function (data) {
             _this.router.navigate(['']);
         }, function (error) {
-            console.log('error');
+            _this.alertService.error(error['non_field_errors'][0]);
         });
     };
     AuthorizationComponent = __decorate([
@@ -34,7 +36,7 @@ var AuthorizationComponent = (function () {
             template: "\n        \n        <div class=\"row auth\">\n            <div class=\"col-md-4 col-md-offset-3\"><h2>Authorization</h2></div>\n            <div class=\"col-md-4 col-md-offset-3\">\n                <div class=\"form-group\">\n                    <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"user.username\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">\u041F\u0430\u0440\u043E\u043B\u044C</label>\n                    <div class=\"col-sm-10\">\n                    <input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\" [(ngModel)]=\"user.password\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-sm-offset-2 col-sm-10\">\n                    <button type=\"submit\" class=\"btn btn-default\" (click)=\"check(user)\">\u0412\u043E\u0439\u0442\u0438</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n     ",
             providers: [auth_service_service_1.AuthService]
         }), 
-        __metadata('design:paramtypes', [auth_service_service_1.AuthService, router_1.Router])
+        __metadata('design:paramtypes', [auth_service_service_1.AuthService, router_1.Router, status_service_1.AlertService])
     ], AuthorizationComponent);
     return AuthorizationComponent;
 }());

@@ -42,8 +42,8 @@ class UserLoginSerializer(ModelSerializer):
         if user.exists() and user.count() == 1:
             user_obj = user.first()
         else:
-            raise ValidationError('username is not exist')
+            raise ValidationError('Username is not exist in own system.Please,register.')
         if user_obj:
             if not user_obj.check_password(password):
-                raise ValidationError('incorrecct')
+                raise ValidationError('Your password is incorrect')
         return data

@@ -24,6 +24,7 @@ import { Component } from '@angular/core';
                             <li role="presentation"><a routerLink="/login">Login</a></li>
                         </ul>
                     </header>
+                    <alert></alert>
                     <router-outlet></router-outlet>
                 </div>
                  `

@@ -7,6 +7,8 @@ import { AuthorizationComponent } from './Authorization/authorization.component'
 import { BaseComponent } from './base.component';
 import { HttpModule }   from '@angular/http';
 import {Routes, RouterModule} from '@angular/router';
+import { AlertComponent } from './StatusAuth/status.component';
+import { AlertService} from './StatusAuth/status.service';
 
 const appRoutes: Routes =[
     { path: '', component: AppComponent},
@@ -16,7 +18,8 @@ const appRoutes: Routes =[
 
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
-    declarations: [ AppComponent, BaseComponent, RegistrationComponent, AuthorizationComponent ],
+    declarations: [ AppComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent ],
     bootstrap:    [ BaseComponent ],
+    providers: [ AlertComponent,AlertService ],
 })
 export class AppModule { }

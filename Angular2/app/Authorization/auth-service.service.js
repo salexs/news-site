@@ -21,7 +21,7 @@ var AuthService = (function () {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         return this.http.post("http://localhost:8000/api/users/login/", body, { headers: headers })
             .map(function (resp) { return resp.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error); });
+            .catch(function (error) { return Rx_1.Observable.throw(error.json()); });
     };
     AuthService = __decorate([
         core_1.Injectable(), 

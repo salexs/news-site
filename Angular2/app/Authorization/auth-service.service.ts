@@ -13,6 +13,6 @@ export class AuthService {
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         return this.http.post("http://localhost:8000/api/users/login/",body,{headers:headers})
                                 .map((resp:Response)=>resp.json())
-                                .catch((error:any) =>{return Observable.throw(error);}); 
+                                .catch((error:any) =>{return Observable.throw(error.json());}); 
     }
 }
