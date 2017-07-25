@@ -8,13 +8,13 @@ from rest_framework.generics import (
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
-    IsAdminUser,
-    IsAuthenticatedOrReadOnly
+    IsAdminUser
 )
 from .models import News
 
 class NewsListAPIView(ListAPIView):
     serializer_class = NewsListSerializer
+    permission_classes = [IsAuthenticated]
     queryset = News.objects.all()
 
 class NewsCreateAPIView(CreateAPIView):

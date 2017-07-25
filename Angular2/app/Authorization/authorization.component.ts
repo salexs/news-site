@@ -51,7 +51,8 @@ export class AuthorizationComponent {
                         this.router.navigate(['']);
                     },
                     error => {
-                        this.alertService.error(error['non_field_errors'][0]);
+                        console.log(error)
+                        this.alertService.error(error);
                     }
                 );
     }   

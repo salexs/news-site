@@ -26,7 +26,8 @@ var AuthorizationComponent = (function () {
             .subscribe(function (data) {
             _this.router.navigate(['']);
         }, function (error) {
-            _this.alertService.error(error['non_field_errors'][0]);
+            console.log(error);
+            _this.alertService.error(error);
         });
     };
     AuthorizationComponent = __decorate([

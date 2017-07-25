@@ -9,15 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var news_service_1 = require('./news.service');
+var status_service_1 = require('../StatusAuth/status.service');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(newsService, alertService) {
+        this.newsService = newsService;
+        this.alertService = alertService;
+        this.newsList = [];
     }
+    AppComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.newsService.getData().subscribe(function (data) {
+            data.map(function (elem) {
+                _this.newsList.push(elem);
+            });
+        }, function (error) {
+            if (error.status == "403")
+                _this.alertService.error('You are not authorized!!!');
+        });
+    };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "<label>Create news:</label>\n                 <input [(ngModel)]=\"title\" placeholder=\"Title\">\n                 <input [(ngModel)]=\"text\" placeholder=\"Text\">\n                 <input class=\"btn btn-default\" type=\"submit\" value=\"Add News\" (click)=\"addNews(title, text)\">\n                 <div class=\"row\">\n                    <div class=\"col-sm-5 col-md-3\" *ngFor=\"let news of newsList\">\n                        <div class=\"thumbnail\">\n                            <div class=\"caption\">\n                                <i class=\"fa fa-trash-o\" aria-hidden=\"true\" (click)=\"delNews(news)\"></i>\n                                <h3>{{news.title}}</h3>\n                                <p>{{news.text}}</p>\n                                <p><i>Author: {{news.author}}</i></p>\n                                <p><a href=\"#\" class=\"btn btn-default\" role=\"button\">Show More</a></p>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                 "
+            template: "<div class='col-md-9 col-md-offset-1'>\n                    <label>Create news:</label>\n                    <input [(ngModel)]=\"title\" placeholder=\"Title\">\n                    <input [(ngModel)]=\"text\" placeholder=\"Text\">\n                    <input class=\"btn btn-default\" type=\"submit\" value=\"Add News\" (click)=\"addNews(title, text)\">\n                    <div class=\"row\">\n                        <div class=\"col-sm-5 col-md-3\" *ngFor=\"let news of newsList\">\n                            <div class=\"thumbnail\">\n                                <div class=\"caption\">\n                                    <i class=\"fa fa-trash-o\" aria-hidden=\"true\" (click)=\"delNews(news)\"></i>\n                                    <h3>{{news.title}}</h3>\n                                    <p>{{news.text}}</p>\n                                    <p><i>Author: {{news.author}}</i></p>\n                                    <p><a href=\"#\" class=\"btn btn-default\" role=\"button\">Show More</a></p>\n                                </div>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                 "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [news_service_1.NewsService, status_service_1.AlertService])
     ], AppComponent);
     return AppComponent;
 }());

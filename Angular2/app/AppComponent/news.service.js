@@ -10,30 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
 var Rx_1 = require('rxjs/Rx');
-var AuthService = (function () {
-    function AuthService(http) {
+require('rxjs/add/operator/toPromise');
+var NewsService = (function () {
+    function NewsService(http) {
         this.http = http;
     }
-    AuthService.prototype.postData = function (obj) {
-        var _this = this;
-        var body = JSON.stringify(obj);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-        return this.http.post("http://localhost:8000/api/users/login/", body, { headers: headers })
-            .map(function (resp) {
-            var username = resp.json();
-            console.log(username);
-            _this.http.post("http://localhost:8000/api/users/gettoken/", body, { headers: headers })
-                .map(function (resp) { console.log(resp.json()); });
-        })
-            .catch(function (error) { return Rx_1.Observable.throw(error.json()); });
+    NewsService.prototype.getData = function () {
+        return this.http.get('http://localhost:8000/api/news/')
+            .map(function (resp) { return resp.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error); });
     };
-    AuthService = __decorate([
+    NewsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
-    ], AuthService);
-    return AuthService;
+    ], NewsService);
+    return NewsService;
 }());
-exports.AuthService = AuthService;
-//# sourceMappingURL=auth-service.service.js.map
+exports.NewsService = NewsService;
+//# sourceMappingURL=news.service.js.map

@@ -1,6 +1,6 @@
 export class News {
     title: string;
     text: string;
-    date: string;
+    publish_date: string;
     author: string;
 }

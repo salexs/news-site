@@ -19,6 +19,7 @@ var http_1 = require('@angular/http');
 var router_1 = require('@angular/router');
 var status_component_1 = require('./StatusAuth/status.component');
 var status_service_1 = require('./StatusAuth/status.service');
+var news_service_1 = require('./AppComponent/news.service');
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent },
     { path: 'login', component: authorization_component_1.AuthorizationComponent },
@@ -32,7 +33,7 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes)],
             declarations: [app_component_1.AppComponent, base_component_1.BaseComponent, registration_component_1.RegistrationComponent, authorization_component_1.AuthorizationComponent, status_component_1.AlertComponent],
             bootstrap: [base_component_1.BaseComponent],
-            providers: [status_component_1.AlertComponent, status_service_1.AlertService],
+            providers: [status_component_1.AlertComponent, status_service_1.AlertService, news_service_1.NewsService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);
