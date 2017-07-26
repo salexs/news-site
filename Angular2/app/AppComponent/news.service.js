@@ -12,18 +12,23 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 var Rx_1 = require('rxjs/Rx');
 require('rxjs/add/operator/toPromise');
+var auth_service_service_1 = require('../Authorization/auth-service.service');
 var NewsService = (function () {
-    function NewsService(http) {
+    function NewsService(http, authService) {
         this.http = http;
+        this.authService = authService;
     }
     NewsService.prototype.getData = function () {
-        return this.http.get('http://localhost:8000/api/news/')
+        console.log(JSON.parse(localStorage.getItem('currentUser')));
+        var headers = new http_1.Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token });
+        var options = new http_1.RequestOptions({ headers: headers });
+        return this.http.get('http://localhost:8000/api/news/', options)
             .map(function (resp) { return resp.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error); });
     };
     NewsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, auth_service_service_1.AuthService])
     ], NewsService);
     return NewsService;
 }());

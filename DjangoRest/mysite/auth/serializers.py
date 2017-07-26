@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+from rest_framework_jwt.views import obtain_jwt_token
 from rest_framework.serializers import (
     CharField,
     ModelSerializer,

@@ -15,17 +15,17 @@ var Rx_1 = require('rxjs/Rx');
 var AuthService = (function () {
     function AuthService(http) {
         this.http = http;
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = currentUser && currentUser.token;
     }
     AuthService.prototype.postData = function (obj) {
-        var _this = this;
         var body = JSON.stringify(obj);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-        return this.http.post("http://localhost:8000/api/users/login/", body, { headers: headers })
+        return this.http.post("http://localhost:8000/api/users/gettoken/", body, { headers: headers })
             .map(function (resp) {
-            var username = resp.json();
-            console.log(username);
-            _this.http.post("http://localhost:8000/api/users/gettoken/", body, { headers: headers })
-                .map(function (resp) { console.log(resp.json()); });
+            var token = resp.json();
+            localStorage.setItem('currentUser', JSON.stringify({ token: token.token }));
+            return true;
         })
             .catch(function (error) { return Rx_1.Observable.throw(error.json()); });
     };
