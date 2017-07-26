@@ -24,7 +24,7 @@ var AuthService = (function () {
         return this.http.post("http://localhost:8000/api/users/gettoken/", body, { headers: headers })
             .map(function (resp) {
             var token = resp.json();
-            localStorage.setItem('currentUser', JSON.stringify({ token: token.token }));
+            localStorage.setItem('currentUser', JSON.stringify({ token: token.token, username: obj.username }));
             return true;
         })
             .catch(function (error) { return Rx_1.Observable.throw(error.json()); });

@@ -19,9 +19,13 @@ var NewsService = (function () {
         this.authService = authService;
     }
     NewsService.prototype.getData = function () {
-        console.log(JSON.parse(localStorage.getItem('currentUser')));
-        var headers = new http_1.Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token });
-        var options = new http_1.RequestOptions({ headers: headers });
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            var headers = new http_1.Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token });
+            var options = new http_1.RequestOptions({ headers: headers });
+        }
+        else {
+            var options = new http_1.RequestOptions({});
+        }
         return this.http.get('http://localhost:8000/api/news/', options)
             .map(function (resp) { return resp.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error); });

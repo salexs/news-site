@@ -1,5 +1,4 @@
-import { Component } from '@angular/core';
-     
+import { Component, OnInit, DoCheck } from '@angular/core';
 
 @Component({
     selector: 'main',
@@ -19,9 +18,13 @@ import { Component } from '@angular/core';
                 <div>
                     <header>
                         <h1 routerLink="">Tagan News</h1 >
-                        <ul class="nav navbar-nav navbar-right">
+                        <ul *ngIf='!name' class="nav navbar-nav navbar-right">
                             <li role="presentation"><a routerLink="/registration">Registration</a></li>
                             <li role="presentation"><a routerLink="/login">Login</a></li>
+                        </ul>
+                        <ul *ngIf='name' class="nav navbar-nav navbar-right">
+                            <li role="presentation"><a routerLink="/registration">{{name}}</a></li>
+                            <li role="presentation"><a routerLink="/login">LogOut</a></li>
                         </ul>
                     </header>
                     <alert></alert>
@@ -29,4 +32,12 @@ import { Component } from '@angular/core';
                 </div>
                  `
 })
-export class BaseComponent { }
+export class BaseComponent implements DoCheck {
+    name: string;
+    ngDoCheck() {
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            this.name = JSON.parse(localStorage.getItem('currentUser')).username
+        }
+    }
+    
+}

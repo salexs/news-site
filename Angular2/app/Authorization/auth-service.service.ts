@@ -19,7 +19,7 @@ export class AuthService {
         return this.http.post("http://localhost:8000/api/users/gettoken/", body, { headers: headers })
             .map((resp: Response) => {
                 let token = resp.json();
-                localStorage.setItem('currentUser', JSON.stringify({ token: token.token }));
+                localStorage.setItem('currentUser', JSON.stringify({ token: token.token, username: obj.username }));
                 return true
             })
             .catch((error: any) => { return Observable.throw(error.json()); });
