@@ -9,3 +9,4 @@ class News(models.Model):
         on_delete=models.CASCADE,
     )
     publish_date = models.DateField(auto_now=True)
+
