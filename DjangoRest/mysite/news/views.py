@@ -22,7 +22,7 @@ class NewsListAPIView(ListAPIView):
     queryset = News.objects.all()
 
 class NewsCreateAPIView(CreateAPIView):
-    serializer_class = CreateNewsSerializer
+    serializer_class = NewsListSerializer
     queryset = News.objects.all()
     permission_classes = [IsAuthenticated,IsOwnerOrReadOnly]
     def perform_create(self,serializer):

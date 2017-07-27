@@ -28,6 +28,7 @@ class CreateNewsSerializer(ModelSerializer):
             fields = [
                 'title',
                 'text',
+
             ]
 class UpdateNewsSerializer(ModelSerializer):
         class Meta:

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnInit, OnChanges } from '@angular/core';
 import { NewsService } from './news.service';
 import { Response } from '@angular/http';
 import { News } from './News'
 import { AlertService } from '../StatusAuth/status.service'
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'my-app',
@@ -10,12 +11,12 @@ import { AlertService } from '../StatusAuth/status.service'
                     <label>Create news:</label>
                     <input [(ngModel)]="title" placeholder="Title">
                     <input [(ngModel)]="text" placeholder="Text">
-                    <input class="btn btn-default" type="submit" value="Add News" (click)="addNews(title, text)">
+                    <input class="btn btn-default" type="submit" (click)="addNewsClick({title:title,text:text})" value="Add News" >
                     <div class="row">
                         <div class="col-sm-5 col-md-3" *ngFor="let news of newsList">
                             <div class="thumbnail">
                                 <div class="caption">
-                                    <i class="fa fa-trash-o" aria-hidden="true" (click)="delNews(news)"></i>
+                                    <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
                                     <h3>{{news.title}}</h3>
                                     <p>{{news.text}}</p>
                                     <p><i>Author: {{news.author}}</i></p>
@@ -28,10 +29,11 @@ import { AlertService } from '../StatusAuth/status.service'
                  `
 })
 export class AppComponent implements OnInit {
-    constructor(private newsService: NewsService,private alertService: AlertService) { }
+    constructor(private newsService: NewsService, private alertService: AlertService, private router: Router) { }
+    title:string;
+    text:string;
     newsList: News[] = [];
     ngOnInit() {
-
         this.newsService.getData().subscribe(
             data => {
                 data.map((elem: News) => {
@@ -39,7 +41,33 @@ export class AppComponent implements OnInit {
                 })
             },
             error => {
-                if (error.status == "403") this.alertService.error('You are not authorized!!!');
+                this.router.navigate(['login']);
+                this.alertService.error('You are not authorized!!!');
+            }
+
+        );
+    }
+    delNewsClick(id: string): void {
+        this.newsService.delNews(id).subscribe(
+            data => {
+                var index = this.newsList.findIndex(elem=> elem.pk==id);
+                this.newsList.splice(index,1)
+            },
+            error => {
+                if (error.status == "403") this.alertService.error('You are not owner this news!!!');
+            }
+
+        );
+    }
+    addNewsClick(news: any): void {
+        this.title = '';
+        this.text = '';
+        this.newsService.createNews(news).subscribe(
+            data => {
+                this.newsList.push(data)
+            },
+            error => {
+                if (error.status == "403") this.alertService.error('You are not owner this news!!!');
             }
 
         );

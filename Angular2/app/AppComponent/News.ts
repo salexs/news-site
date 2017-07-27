@@ -3,4 +3,5 @@ export class News {
     text: string;
     publish_date: string;
     author: string;
+    pk: string;
 }

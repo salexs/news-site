@@ -30,6 +30,31 @@ var NewsService = (function () {
             .map(function (resp) { return resp.json(); })
             .catch(function (error) { return Rx_1.Observable.throw(error); });
     };
+    NewsService.prototype.delNews = function (id) {
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            var headers = new http_1.Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token });
+            var options = new http_1.RequestOptions({ headers: headers });
+        }
+        else {
+            var options = new http_1.RequestOptions({});
+        }
+        return this.http.delete('http://localhost:8000/api/news/delete/' + id + '/', options)
+            .map(function (resp) { return resp.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error); });
+    };
+    NewsService.prototype.createNews = function (obj) {
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            var headers = new http_1.Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token, 'Content-Type': 'application/json;charset=utf-8' });
+            var options = new http_1.RequestOptions({ headers: headers });
+        }
+        else {
+            var options = new http_1.RequestOptions({});
+        }
+        var body = JSON.stringify(obj);
+        return this.http.post('http://localhost:8000/api/news/create/', body, options)
+            .map(function (resp) { return resp.json(); })
+            .catch(function (error) { return Rx_1.Observable.throw(error); });
+    };
     NewsService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http, auth_service_service_1.AuthService])

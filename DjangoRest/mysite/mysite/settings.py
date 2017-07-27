@@ -73,6 +73,7 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:8080',
     '0.0.0.0:3000',
     'localhost:3000',
+    '192.168.88.201:3000'
 )
 CORS_ALLOW_METHODS = (
     'DELETE',
