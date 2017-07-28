@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
-import { User } from './user'
-
+import { User } from './user';
+import {FollowAuthService} from './follow-auth.service';
 
 @Injectable()
 export class AuthService {
     public token: string;
-    constructor(private http: Http) { 
+    constructor(private http: Http,private followAuthService:FollowAuthService) {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }
@@ -20,9 +20,13 @@ export class AuthService {
             .map((resp: Response) => {
                 let token = resp.json();
                 localStorage.setItem('currentUser', JSON.stringify({ token: token.token, username: obj.username }));
+                this.followAuthService.setToken(obj.username);
                 return true
             })
             .catch((error: any) => { return Observable.throw(error.json()); });
     }
-
+    logout(): void {
+        localStorage.removeItem('currentUser');
+        this.followAuthService.clearLS();
+    }
 }

@@ -20,6 +20,9 @@ var AuthorizationComponent = (function () {
         this.alertService = alertService;
         this.user = new user_1.User;
     }
+    AuthorizationComponent.prototype.ngOnInit = function () {
+        this.authService.logout();
+    };
     AuthorizationComponent.prototype.check = function (user) {
         var _this = this;
         this.authService.postData(user)

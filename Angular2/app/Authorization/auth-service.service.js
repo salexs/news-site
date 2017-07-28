@@ -12,26 +12,34 @@ var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
 require('rxjs/add/operator/toPromise');
 var Rx_1 = require('rxjs/Rx');
+var follow_auth_service_1 = require('./follow-auth.service');
 var AuthService = (function () {
-    function AuthService(http) {
+    function AuthService(http, followAuthService) {
         this.http = http;
+        this.followAuthService = followAuthService;
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }
     AuthService.prototype.postData = function (obj) {
+        var _this = this;
         var body = JSON.stringify(obj);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         return this.http.post("http://localhost:8000/api/users/gettoken/", body, { headers: headers })
             .map(function (resp) {
             var token = resp.json();
             localStorage.setItem('currentUser', JSON.stringify({ token: token.token, username: obj.username }));
+            _this.followAuthService.setToken(obj.username);
             return true;
         })
             .catch(function (error) { return Rx_1.Observable.throw(error.json()); });
     };
+    AuthService.prototype.logout = function () {
+        localStorage.removeItem('currentUser');
+        this.followAuthService.clearLS();
+    };
     AuthService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [http_1.Http, follow_auth_service_1.FollowAuthService])
     ], AuthService);
     return AuthService;
 }());

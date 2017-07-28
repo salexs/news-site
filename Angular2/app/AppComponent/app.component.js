@@ -26,7 +26,6 @@ var AppComponent = (function () {
                 _this.newsList.push(elem);
             });
         }, function (error) {
-            _this.router.navigate(['login']);
             _this.alertService.error('You are not authorized!!!');
         });
     };

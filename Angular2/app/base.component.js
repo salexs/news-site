@@ -12,16 +12,11 @@ var core_1 = require('@angular/core');
 var BaseComponent = (function () {
     function BaseComponent() {
     }
-    BaseComponent.prototype.ngDoCheck = function () {
-        if (JSON.parse(localStorage.getItem('currentUser'))) {
-            this.name = JSON.parse(localStorage.getItem('currentUser')).username;
-        }
-    };
     BaseComponent = __decorate([
         core_1.Component({
             selector: 'main',
             styles: [" \n            @import url('https://fonts.googleapis.com/css?family=Droid+Serif');\n            h1 {\n                font-family: 'Droid Serif', serif;\n            }\n            .nav > li > a {\n                color:white;\n            }\n            .nav {\n                margin-left: 1110px;\n            }\n    "],
-            template: "\n                <div>\n                    <header>\n                        <h1 routerLink=\"\">Tagan News</h1 >\n                        <ul *ngIf='!name' class=\"nav navbar-nav navbar-right\">\n                            <li role=\"presentation\"><a routerLink=\"/registration\">Registration</a></li>\n                            <li role=\"presentation\"><a routerLink=\"/login\">Login</a></li>\n                        </ul>\n                        <ul *ngIf='name' class=\"nav navbar-nav navbar-right\">\n                            <li role=\"presentation\"><a routerLink=\"/registration\">{{name}}</a></li>\n                            <li role=\"presentation\"><a routerLink=\"/login\">LogOut</a></li>\n                        </ul>\n                    </header>\n                    <alert></alert>\n                    <router-outlet></router-outlet>\n                </div>\n                 "
+            template: "\n                <div>\n                    <header>\n                        <h1 routerLink=\"\">Tagan News</h1 >\n                        <header-comp></header-comp>\n                    </header>\n                    <alert></alert>\n                    <router-outlet></router-outlet>\n                </div>\n                 "
         }), 
         __metadata('design:paramtypes', [])
     ], BaseComponent);

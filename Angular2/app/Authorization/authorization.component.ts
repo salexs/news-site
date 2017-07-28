@@ -38,12 +38,14 @@ import {AlertService} from '../StatusAuth/status.service'
 })
 
 
-export class AuthorizationComponent {
+export class AuthorizationComponent implements OnInit {
     constructor(private authService: AuthService,private router: Router,private alertService: AlertService) {}
     
     user: User = new User;
     user_obj: User;
-
+    ngOnInit(){
+        this.authService.logout()
+    }
     check(user:User) {
         this.authService.postData(user)
                 .subscribe(

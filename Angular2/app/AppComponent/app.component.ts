@@ -41,7 +41,6 @@ export class AppComponent implements OnInit {
                 })
             },
             error => {
-                this.router.navigate(['login']);
                 this.alertService.error('You are not authorized!!!');
             }
 

@@ -21,8 +21,11 @@ var status_component_1 = require('./StatusAuth/status.component');
 var status_service_1 = require('./StatusAuth/status.service');
 var news_service_1 = require('./AppComponent/news.service');
 var auth_service_service_1 = require('./Authorization/auth-service.service');
+var auth_guard_1 = require('./Authorization/auth.guard');
+var follow_auth_service_1 = require('./Authorization/follow-auth.service');
+var header_component_1 = require('./Header/header.component');
 var appRoutes = [
-    { path: '', component: app_component_1.AppComponent },
+    { path: '', component: app_component_1.AppComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'login', component: authorization_component_1.AuthorizationComponent },
     { path: 'registration', component: registration_component_1.RegistrationComponent }
 ];
@@ -32,9 +35,9 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes)],
-            declarations: [app_component_1.AppComponent, base_component_1.BaseComponent, registration_component_1.RegistrationComponent, authorization_component_1.AuthorizationComponent, status_component_1.AlertComponent],
+            declarations: [app_component_1.AppComponent, base_component_1.BaseComponent, registration_component_1.RegistrationComponent, authorization_component_1.AuthorizationComponent, status_component_1.AlertComponent, header_component_1.HeaderComponent],
             bootstrap: [base_component_1.BaseComponent],
-            providers: [status_component_1.AlertComponent, status_service_1.AlertService, news_service_1.NewsService, auth_service_service_1.AuthService],
+            providers: [status_component_1.AlertComponent, status_service_1.AlertService, news_service_1.NewsService, auth_service_service_1.AuthService, auth_guard_1.AuthGuard, follow_auth_service_1.FollowAuthService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

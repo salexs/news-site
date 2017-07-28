@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { AuthService } from '../Authorization/auth-service.service'
 import { News } from './News'
 
+
 @Injectable()
 export class NewsService {
 
