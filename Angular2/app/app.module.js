@@ -25,11 +25,12 @@ var news_service_1 = require('./Service/news.service');
 var auth_service_service_1 = require('./Service/auth-service.service');
 var auth_guard_1 = require('./Service/auth.guard');
 var follow_auth_service_1 = require('./Service/follow-auth.service');
+var get_profile_service_1 = require('./Service/get-profile.service');
 var appRoutes = [
     { path: '', component: app_component_1.AppComponent, canActivate: [auth_guard_1.AuthGuard] },
     { path: 'login', component: authorization_component_1.AuthorizationComponent },
     { path: 'registration', component: registration_component_1.RegistrationComponent },
-    { path: 'profile', component: profile_component_1.Profile },
+    { path: ':username', component: profile_component_1.Profile },
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -39,7 +40,7 @@ var AppModule = (function () {
             imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule, router_1.RouterModule.forRoot(appRoutes)],
             declarations: [app_component_1.AppComponent, base_component_1.BaseComponent, registration_component_1.RegistrationComponent, authorization_component_1.AuthorizationComponent, status_component_1.AlertComponent, header_component_1.HeaderComponent, profile_component_1.Profile],
             bootstrap: [base_component_1.BaseComponent],
-            providers: [status_component_1.AlertComponent, status_service_1.AlertService, news_service_1.NewsService, auth_service_service_1.AuthService, auth_guard_1.AuthGuard, follow_auth_service_1.FollowAuthService],
+            providers: [status_component_1.AlertComponent, status_service_1.AlertService, news_service_1.NewsService, auth_service_service_1.AuthService, auth_guard_1.AuthGuard, follow_auth_service_1.FollowAuthService, get_profile_service_1.ProfileService],
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

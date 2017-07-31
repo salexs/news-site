@@ -17,20 +17,20 @@ import { NewsService } from './Service/news.service';
 import {AuthService } from './Service/auth-service.service';
 import { AuthGuard } from './Service/auth.guard';
 import { FollowAuthService } from './Service/follow-auth.service';
-
+import { ProfileService } from './Service/get-profile.service';
 
 
 const appRoutes: Routes = [
     { path: '', component: AppComponent,canActivate: [AuthGuard]},
     { path: 'login', component: AuthorizationComponent},
     { path: 'registration', component: RegistrationComponent },
-    { path: 'profile', component: Profile },
+    { path: ':username', component: Profile },
 ];
 
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
     declarations: [ AppComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile ],
     bootstrap:    [ BaseComponent ],
-    providers: [ AlertComponent, AlertService, NewsService, AuthService, AuthGuard, FollowAuthService ],
+    providers: [ AlertComponent, AlertService, NewsService, AuthService, AuthGuard, FollowAuthService, ProfileService ],
 })
 export class AppModule { }

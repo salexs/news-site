@@ -18,7 +18,7 @@ var NewsService = (function () {
         this.http = http;
         this.authService = authService;
     }
-    NewsService.prototype.getData = function () {
+    NewsService.prototype.getData = function (currentUser) {
         if (JSON.parse(localStorage.getItem('currentUser'))) {
             var headers = new http_1.Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token });
             var options = new http_1.RequestOptions({ headers: headers });
@@ -26,9 +26,16 @@ var NewsService = (function () {
         else {
             var options = new http_1.RequestOptions({});
         }
-        return this.http.get('http://localhost:8000/api/news/', options)
-            .map(function (resp) { return resp.json(); })
-            .catch(function (error) { return Rx_1.Observable.throw(error); });
+        if (currentUser == undefined) {
+            return this.http.get('http://localhost:8000/api/news/', options)
+                .map(function (resp) { return resp.json(); })
+                .catch(function (error) { return Rx_1.Observable.throw(error); });
+        }
+        else {
+            return this.http.get('http://localhost:8000/api/news/' + currentUser + '/', options)
+                .map(function (resp) { return resp.json(); })
+                .catch(function (error) { return Rx_1.Observable.throw(error); });
+        }
     };
     NewsService.prototype.delNews = function (id) {
         if (JSON.parse(localStorage.getItem('currentUser'))) {

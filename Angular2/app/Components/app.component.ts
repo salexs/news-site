@@ -4,6 +4,9 @@ import { Response } from '@angular/http';
 import { News } from '../Models/newsModel'
 import { AlertService } from '../Service/status.service'
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+
+
 
 @Component({
     selector: 'my-app',
@@ -19,7 +22,7 @@ import { Router } from '@angular/router';
                                     <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
                                     <h3>{{news.title}}</h3>
                                     <p>{{news.text}}</p>
-                                    <p><i>Author: {{news.author}}</i></p>
+                                    <p (click)="openDetailAuthor(news.author)"><i>Author: {{news.author}}</i></p>
                                     <p><a href="#" class="btn btn-default" role="button">Show More</a></p>
                                 </div>
                             </div>
@@ -29,12 +32,15 @@ import { Router } from '@angular/router';
                  `
 })
 export class AppComponent implements OnInit {
-    constructor(private newsService: NewsService, private alertService: AlertService, private router: Router) { }
-    title:string;
-    text:string;
-    newsList: News[] = [];
+    constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private activateRoute: ActivatedRoute) {
+        this.currentUser = activateRoute.snapshot.params['username'];
+     }
+    currentUser : string;
+    title : string;
+    text : string;
+    newsList : News[] = [];
     ngOnInit() {
-        this.newsService.getData().subscribe(
+        this.newsService.getData(this.currentUser).subscribe(
             data => {
                 data.map((elem: News) => {
                     this.newsList.push(elem)
@@ -70,5 +76,8 @@ export class AppComponent implements OnInit {
             }
 
         );
+    }
+    openDetailAuthor(author:string) {
+        this.router.navigate([author]);
     }
 }

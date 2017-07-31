@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/users/',include('auth.urls')),
     url(r'^api/news/',include('news.urls')),
-    url(r'^api/users/gettoken/',obtain_jwt_token)
+    url(r'^api/users/gettoken/',obtain_jwt_token),
+    url(r'^api/profile/',include('user_profile.urls')),
 ]
