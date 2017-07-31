@@ -1,3 +1,35 @@
+@import url('https://fonts.googleapis.com/css?family=Droid+Serif');
+
+body {
+    background: #e0f4e0;
+}
 .auth {
-    margin-top:210px;
+    width:700px;
+    margin: 0 auto;
+    background: white;
+    margin-top: 200px;
+    border-radius:10px;
+    background: #dfeddf;
+    box-shadow:
+        0 1px 4px rgba(0, 0, 0, .3),
+        -23px 0 20px -23px rgba(0, 0, 0, .8),
+        23px 0 20px -23px rgba(0, 0, 0, .8),
+        0 0 40px rgba(0, 0, 0, .1) inset;
+}
+
+.auth h2 {
+    text-align: center;
+    font-family: 'Droid Serif', serif;
+}
+
+.form-group {
+    padding: 15px 0px 15px 0px;
+}
+
+.form-group input {
+    border-radius:15px;
+}
+
+.form-group button {
+    background: #f3a2a2;
 }

@@ -1,4 +1,7 @@
 from django.conf.urls import url,include 
+from refreshtoken.routers import urlpatterns as rt_urlpatterns
+
+
 from .views import (
     UserCreateAPIView,
     UserLoginAPIView
@@ -7,4 +10,4 @@ from .views import (
 urlpatterns = [
     url(r'^registration/', UserCreateAPIView.as_view()),
     url(r'^login/',UserLoginAPIView.as_view())
-]
+] + rt_urlpatterns

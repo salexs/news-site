@@ -11,23 +11,23 @@ import {AlertService} from '../Service/status.service'
     template: `
         
         <div class="row auth">
-            <div class="col-md-4 col-md-offset-3"><h2>Authorization</h2></div>
-            <div class="col-md-4 col-md-offset-3">
+            <div>
+                <h2>Login in</h2>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email:</label>
                     <div class="col-sm-10">
-                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="user.username">
+                        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" [(ngModel)]="user.username">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputPassword3" class="col-sm-2 control-label">Пароль</label>
+                    <label for="inputPassword3" class="col-sm-2 control-label">Пароль:</label>
                     <div class="col-sm-10">
-                    <input type="password" class="form-control" id="inputPassword3" placeholder="Password" [(ngModel)]="user.password">
+                        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" [(ngModel)]="user.password">
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" (click)="check(user)">Войти</button>
+                    <div class="col-sm-offset-10 col-sm-10">
+                        <button type="submit" class="btn btn-default" (click)="check(user)">Войти</button>
                     </div>
                 </div>
             </div>
