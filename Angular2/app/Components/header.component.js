@@ -32,7 +32,7 @@ var HeaderComponent = (function () {
         core_1.Component({
             selector: 'header-comp',
             styles: [" \n            @import url('https://fonts.googleapis.com/css?family=Droid+Serif');\n            h1 {\n                font-family: 'Droid Serif', serif;\n            }\n            .nav > li > a {\n                color:white;\n            }\n            .nav {\n                margin-left: 1110px;\n            }\n    "],
-            template: "\n                <div>\n                    <ul *ngIf='!name' class=\"nav navbar-nav navbar-right\">\n                        <li role=\"presentation\"><a routerLink=\"/registration\">Registration</a></li>\n                        <li role=\"presentation\"><a routerLink=\"/login\">Login</a></li>\n                    </ul>\n                    <ul *ngIf='name' class=\"nav navbar-nav navbar-right\">\n                        <li role=\"presentation\"><a routerLink=\"/profile\">{{name}}</a></li>\n                        <li role=\"presentation\"><a routerLink=\"/login\">LogOut</a></li>\n                    </ul>\n                </div>\n                 "
+            templateUrl: 'app/Components/header.component.html'
         }), 
         __metadata('design:paramtypes', [follow_auth_service_1.FollowAuthService])
     ], HeaderComponent);

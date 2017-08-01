@@ -1,0 +1,19 @@
+<div class='col-md-9 col-md-offset-1'>
+    <label>Create news:</label>
+    <input [(ngModel)]="title" placeholder="Title">
+    <input [(ngModel)]="text" placeholder="Text">
+    <input class="btn btn-default" type="submit" (click)="addNewsClick({title:title,text:text})" value="Add News">
+    <div class="row">
+        <div class="col-sm-5 col-md-3" *ngFor="let news of newsList">
+            <div class="thumbnail">
+                <div class="caption">
+                    <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
+                    <h3>{{news.title}}</h3>
+                    <p>{{news.text}}</p>
+                    <p (click)="openDetailAuthor(news.author)"><i>Author: {{news.author}}</i></p>
+                    <p><a href="#" class="btn btn-default" role="button">Show More</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

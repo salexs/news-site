@@ -22,7 +22,7 @@ var AlertComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'alert',
-            template: "\n        <div *ngIf=\"message\" [ngClass]=\"{ 'alert': message, 'alert-success': message.type === 'success', 'alert-danger': message.type === 'error' }\">{{message.text}}</div>\n    "
+            templateUrl: 'app/Component/status.component.html',
         }), 
         __metadata('design:paramtypes', [status_service_1.AlertService])
     ], AlertComponent);

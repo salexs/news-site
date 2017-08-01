@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'user_profile',
     'refreshtoken',
+    'social_django',
 ]
 
 
@@ -51,9 +52,25 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        'rest_framework_social_oauth2.authentication.SocialAuthentication',
 
     ),
 }
+
+
+SOCIAL_AUTH_USER_MODEL = 'auth.User'
+
+
+AUTHENTICATION_BACKENDS = (
+   'social_core.backends.google.GoogleOAuth2',
+   'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '480176923772-v03uiebg10f4rl9gh4k208vv6ij9ac8t.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qONrtOl9a_JmoF0DPYqbGw9M'
 
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':
@@ -141,6 +158,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },

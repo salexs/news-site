@@ -15,18 +15,7 @@ import { FollowAuthService } from '../Service/follow-auth.service'
                 margin-left: 1110px;
             }
     `],
-    template: `
-                <div>
-                    <ul *ngIf='!name' class="nav navbar-nav navbar-right">
-                        <li role="presentation"><a routerLink="/registration">Registration</a></li>
-                        <li role="presentation"><a routerLink="/login">Login</a></li>
-                    </ul>
-                    <ul *ngIf='name' class="nav navbar-nav navbar-right">
-                        <li role="presentation"><a routerLink="/profile">{{name}}</a></li>
-                        <li role="presentation"><a routerLink="/login">LogOut</a></li>
-                    </ul>
-                </div>
-                 `
+    templateUrl: 'app/Components/header.component.html'
 })
 export class HeaderComponent implements OnInit, OnDestroy {
 

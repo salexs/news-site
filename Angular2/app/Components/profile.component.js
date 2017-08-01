@@ -29,7 +29,7 @@ var Profile = (function () {
         core_1.Component({
             selector: 'profile',
             styleUrls: ['app/Components/profile.component.css'],
-            template: "\n                <div class=\"container\" style=\"margin-top: 30px;\">\n                    <div class=\"profile-head\">\n                        <div class=\"col-md- col-sm-4 col-xs-12\">\n                            <img src=\"\" class=\"img-responsive\" />\n                            <h6>{{user.first_name}} {{user.last_name}}</h6>\n                        </div>\n                        <div class=\"col-md-5 col-sm-5 col-xs-12\">\n                            <h5>{{user.first_name}} {{user.last_name}}</h5>\n                            <p>Web Designer / Develpor </p>\n                            <ul>\n                                <li><span class=\"glyphicon glyphicon-briefcase\"></span> 5 years</li>\n                                <li><span class=\"glyphicon glyphicon-map-marker\"></span> Tam gde vsegda meropriyatiya</li>\n                                <li><span class=\"glyphicon glyphicon-envelope\"></span><a href=\"#\" title=\"mail\">{{user.email}}</a></li>\n                            </ul>\n                        </div>\n                    </div>\n                    <my-app></my-app>\n                </div>\n                 "
+            templateUrl: 'app/Components/profile.component.html'
         }), 
         __metadata('design:paramtypes', [router_1.ActivatedRoute, get_profile_service_1.ProfileService])
     ], Profile);

@@ -35,9 +35,10 @@ var AuthorizationComponent = (function () {
     };
     AuthorizationComponent = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'authorization',
             styleUrls: ['app/Components/authorization.component.css'],
-            template: "\n        \n        <div class=\"row auth\">\n            <div>\n                <h2>Login in</h2>\n                <div class=\"form-group\">\n                    <label for=\"inputEmail3\" class=\"col-sm-2 control-label\">Email:</label>\n                    <div class=\"col-sm-10\">\n                        <input type=\"email\" class=\"form-control\" id=\"inputEmail3\" placeholder=\"Email\" [(ngModel)]=\"user.username\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"inputPassword3\" class=\"col-sm-2 control-label\">\u041F\u0430\u0440\u043E\u043B\u044C:</label>\n                    <div class=\"col-sm-10\">\n                        <input type=\"password\" class=\"form-control\" id=\"inputPassword3\" placeholder=\"Password\" [(ngModel)]=\"user.password\">\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <div class=\"col-sm-offset-10 col-sm-10\">\n                        <button type=\"submit\" class=\"btn btn-default\" (click)=\"check(user)\">\u0412\u043E\u0439\u0442\u0438</button>\n                    </div>\n                </div>\n            </div>\n        </div>\n\n     ",
+            templateUrl: 'app/Components/authorization.component.html',
             providers: [auth_service_service_1.AuthService]
         }), 
         __metadata('design:paramtypes', [auth_service_service_1.AuthService, router_1.Router, status_service_1.AlertService])

@@ -5,7 +5,7 @@ import { HttpModule }   from '@angular/http';
 import {Routes, RouterModule} from '@angular/router';
 
 import { Profile } from './Components/profile.component';
-import { AppComponent }   from './Components/app.component';
+import { NewsListComponent }   from './Components/news-list.component';
 import { RegistrationComponent } from './Components/registration.component';
 import { AuthorizationComponent } from './Components/authorization.component';
 import { BaseComponent } from './Components/base.component';
@@ -21,7 +21,7 @@ import { ProfileService } from './Service/get-profile.service';
 
 
 const appRoutes: Routes = [
-    { path: '', component: AppComponent,canActivate: [AuthGuard]},
+    { path: '', component: NewsListComponent, canActivate: [AuthGuard]},
     { path: 'login', component: AuthorizationComponent},
     { path: 'registration', component: RegistrationComponent },
     { path: ':username', component: Profile },
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes) ],
-    declarations: [ AppComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile ],
+    declarations: [ NewsListComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile ],
     bootstrap:    [ BaseComponent ],
     providers: [ AlertComponent, AlertService, NewsService, AuthService, AuthGuard, FollowAuthService, ProfileService ],
 })
