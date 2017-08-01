@@ -22,7 +22,7 @@ var AlertComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'alert',
-            templateUrl: 'app/Component/status.component.html',
+            templateUrl: './status.template.html',
         }), 
         __metadata('design:paramtypes', [status_service_1.AlertService])
     ], AlertComponent);

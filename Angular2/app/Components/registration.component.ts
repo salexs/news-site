@@ -7,7 +7,8 @@ import { AlertService } from '../Service/status.service';
 
 @Component({
     selector: 'registration',
-    templateUrl: 'app/Component/registration.component.html',
+    moduleId: module.id,
+    templateUrl: './registration.template.html',
     providers: [RegistrationService]
 })
 

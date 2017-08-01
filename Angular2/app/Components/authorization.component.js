@@ -37,8 +37,8 @@ var AuthorizationComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'authorization',
-            styleUrls: ['app/Components/authorization.component.css'],
-            templateUrl: 'app/Components/authorization.component.html',
+            styleUrls: ['./authorization.component.css'],
+            templateUrl: './authorization.template.html',
             providers: [auth_service_service_1.AuthService]
         }), 
         __metadata('design:paramtypes', [auth_service_service_1.AuthService, router_1.Router, status_service_1.AlertService])

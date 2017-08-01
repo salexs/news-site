@@ -60,7 +60,7 @@ var NewsListComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'newslist',
-            templateUrl: 'app/Components/news-list.components.html',
+            templateUrl: './news-list.template.html',
         }), 
         __metadata('design:paramtypes', [news_service_1.NewsService, status_service_1.AlertService, router_1.Router, router_2.ActivatedRoute])
     ], NewsListComponent);

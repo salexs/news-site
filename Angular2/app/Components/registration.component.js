@@ -33,7 +33,8 @@ var RegistrationComponent = (function () {
     RegistrationComponent = __decorate([
         core_1.Component({
             selector: 'registration',
-            templateUrl: 'app/Component/registration.component.html',
+            moduleId: module.id,
+            templateUrl: './registration.template.html',
             providers: [registration_service_service_1.RegistrationService]
         }), 
         __metadata('design:paramtypes', [registration_service_service_1.RegistrationService, router_1.Router, status_service_1.AlertService])

@@ -8,8 +8,8 @@ import { AlertService } from '../Service/status.service'
 @Component({
     moduleId: module.id,
     selector: 'authorization',
-    styleUrls: ['app/Components/authorization.component.css'],
-    templateUrl: 'app/Components/authorization.component.html',
+    styleUrls: ['./authorization.component.css'],
+    templateUrl: './authorization.template.html',
     providers: [AuthService]
 })
 

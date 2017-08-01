@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     moduleId: module.id,
     selector: 'newslist',
-    templateUrl: 'app/Components/news-list.components.html',
+    templateUrl: './news-list.template.html',
 })
 export class NewsListComponent implements OnInit {
     constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private activateRoute: ActivatedRoute) {
