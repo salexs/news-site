@@ -24,5 +24,4 @@ urlpatterns = [
     url(r'^api/users/gettoken/',obtain_jwt_token),
     url(r'^api/profile/',include('user_profile.urls')),
     url(r'^api/users/getrefreshtoken/',refresh_jwt_token),
-    url(r'auth/',include('social.apps.django_app.urls', namespace='social'))
 ]

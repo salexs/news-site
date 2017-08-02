@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'user_profile',
     'refreshtoken',
-    'social.apps.django_app.default',
 ]
 
 
@@ -58,19 +57,6 @@ REST_FRAMEWORK = {
     ),
 }
 
-SOCIAL_AUTH_USER_MODEL = 'auth.User'
-
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '480176923772-v03uiebg10f4rl9gh4k208vv6ij9ac8t.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'qONrtOl9a_JmoF0DPYqbGw9M'
-
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-# Проверка url перенаправления
-SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 
 JWT_AUTH = {
     'JWT_ENCODE_HANDLER':

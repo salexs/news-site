@@ -4,7 +4,7 @@
     <input [(ngModel)]="text" placeholder="Text">
     <input class="btn btn-default" type="submit" (click)="addNewsClick({title:title,text:text})" value="Add News">
     <div class="row">
-        <div class="col-sm-5 col-md-3" *ngFor="let news of newsList">
+        <div class="col-md-9" *ngFor="let news of newsList">
             <div class="thumbnail">
                 <div class="caption">
                     <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
