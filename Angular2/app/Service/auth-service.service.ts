@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Headers, Http, Response,RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
 import { User } from '../Models/authorizationModel';
-import {FollowAuthService} from './follow-auth.service';
+import { FollowAuthService } from './follow-auth.service';
 
 @Injectable()
-export class AuthService {
+export class AuthServices {
     public token: string;
-    constructor(private http: Http,private followAuthService:FollowAuthService) {
+    constructor(private http: Http, private followAuthService: FollowAuthService) {
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }

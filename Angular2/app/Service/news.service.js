@@ -64,7 +64,7 @@ var NewsService = (function () {
     };
     NewsService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http, auth_service_service_1.AuthService])
+        __metadata('design:paramtypes', [http_1.Http, auth_service_service_1.AuthServices])
     ], NewsService);
     return NewsService;
 }());

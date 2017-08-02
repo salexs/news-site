@@ -14,7 +14,7 @@
             '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-            
+            'angular2-social-login': 'node_modules/angular2-social-login/dist/bundles/angular2-social-login.min.js',
             'rxjs': 'npm:rxjs',
         },
         packages: {

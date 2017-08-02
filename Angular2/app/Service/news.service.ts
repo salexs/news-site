@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/toPromise';
-import { AuthService } from '../Service/auth-service.service';
+import { AuthServices } from '../Service/auth-service.service';
 import { News } from '../Models/newsModel';
 
 
 @Injectable()
 export class NewsService {
 
-    constructor(private http: Http, private authService: AuthService) { }
+    constructor(private http: Http, private authService: AuthServices) { }
 
 
     getData(currentUser: string): Observable<any> {

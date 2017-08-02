@@ -13,11 +13,13 @@ var auth_service_service_1 = require('../Service/auth-service.service');
 var router_1 = require('@angular/router');
 var authorizationModel_1 = require('../Models/authorizationModel');
 var status_service_1 = require('../Service/status.service');
+var angular2_social_login_1 = require("angular2-social-login");
 var AuthorizationComponent = (function () {
-    function AuthorizationComponent(authService, router, alertService) {
+    function AuthorizationComponent(authService, router, alertService, _auth) {
         this.authService = authService;
         this.router = router;
         this.alertService = alertService;
+        this._auth = _auth;
         this.user = new authorizationModel_1.User;
     }
     AuthorizationComponent.prototype.ngOnInit = function () {
@@ -33,15 +35,22 @@ var AuthorizationComponent = (function () {
             _this.alertService.error(error);
         });
     };
+    AuthorizationComponent.prototype.signIn = function (provider) {
+        this.sub = this._auth.login(provider).subscribe(function (data) {
+            console.log(data);
+            //user data 
+            //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
+        });
+    };
     AuthorizationComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'authorization',
             styleUrls: ['./authorization.component.css'],
             templateUrl: './authorization.template.html',
-            providers: [auth_service_service_1.AuthService]
+            providers: [angular2_social_login_1.AuthService]
         }), 
-        __metadata('design:paramtypes', [auth_service_service_1.AuthService, router_1.Router, status_service_1.AlertService])
+        __metadata('design:paramtypes', [auth_service_service_1.AuthServices, router_1.Router, status_service_1.AlertService, angular2_social_login_1.AuthService])
     ], AuthorizationComponent);
     return AuthorizationComponent;
 }());

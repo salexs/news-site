@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../Service/auth-service.service';
+import { AuthServices } from '../Service/auth-service.service';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { User } from '../Models/authorizationModel';
-import { AlertService } from '../Service/status.service'
+import { AlertService } from '../Service/status.service';
+import { AuthService } from "angular2-social-login";
 
 @Component({
     moduleId: module.id,
@@ -15,8 +16,8 @@ import { AlertService } from '../Service/status.service'
 
 
 export class AuthorizationComponent implements OnInit {
-    constructor(private authService: AuthService, private router: Router, private alertService: AlertService) { }
-
+    constructor(private authService: AuthServices, private router: Router, private alertService: AlertService,public _auth: AuthService) { }
+    sub : any;
     user: User = new User;
     user_obj: User;
     ngOnInit() {
@@ -34,5 +35,14 @@ export class AuthorizationComponent implements OnInit {
             }
             );
     }
+    signIn(provider:string){
+    this.sub = this._auth.login(provider).subscribe(
+      (data) => {
+                  console.log(data);
+                  //user data 
+                  //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
+                }
+    )
+  }
 
 }
