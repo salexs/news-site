@@ -25,10 +25,6 @@ let providers = {
     "google": {
       "clientId": "480176923772-v03uiebg10f4rl9gh4k208vv6ij9ac8t.apps.googleusercontent.com"
     },
-    "facebook": {
-      "clientId": "FACEBOOK_CLIENT_ID",
-      "apiVersion": "<version>" //like v2.4 
-    }
   };
 
 const appRoutes: Routes = [

@@ -16,6 +16,8 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             'angular2-social-login': 'node_modules/angular2-social-login/dist/bundles/angular2-social-login.min.js',
             'rxjs': 'npm:rxjs',
+            'moment': 'node_modules/moment/moment.js',
+            'ng2-bootstrap/ng2-bootstrap': 'node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
         },
         packages: {
             app: {
@@ -24,7 +26,8 @@
             },
             rxjs: {
                 defaultExtension: 'js'
-            }
+            },
+
         }
     });
 })(this);

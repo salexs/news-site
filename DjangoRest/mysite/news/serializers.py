@@ -18,7 +18,8 @@ class NewsListSerializer(ModelSerializer):
             'title',
             'text',
             'publish_date',
-            'pk'
+            'pk',
+            'model_pic'
         ]
     def get_author(self,obj):
         return str(obj.author.username)

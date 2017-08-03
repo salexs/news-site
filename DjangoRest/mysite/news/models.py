@@ -9,5 +9,5 @@ class News(models.Model):
         on_delete=models.CASCADE,
     )
     publish_date = models.DateField(auto_now=True)
-    model_pic = models.ImageField(upload_to = 'pic_folder/')
+    model_pic = models.ImageField(null=True,blank=True)
 
