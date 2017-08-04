@@ -4,6 +4,8 @@ import { FormsModule }   from '@angular/forms';
 import { HttpModule }   from '@angular/http';
 import {Routes, RouterModule} from '@angular/router';
 import { Angular2SocialLoginModule } from "angular2-social-login";
+import { ModalModule } from 'ngx-bootstrap';
+import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
 import { Profile } from './Components/profile.component';
 import { NewsListComponent }   from './Components/news-list.component';
@@ -12,6 +14,7 @@ import { AuthorizationComponent } from './Components/authorization.component';
 import { BaseComponent } from './Components/base.component';
 import { AlertComponent } from './Components/status.component';
 import { HeaderComponent } from './Components/header.component';
+import {DemoModalServiceStaticComponent} from './Components/profile.component';
 
 import { AlertService} from './Service/status.service';
 import { NewsService } from './Service/news.service';
@@ -19,7 +22,6 @@ import { AuthServices } from './Service/auth-service.service';
 import { AuthGuard } from './Service/auth.guard';
 import { FollowAuthService } from './Service/follow-auth.service';
 import { ProfileService } from './Service/get-profile.service';
-
  
 let providers = {
     "google": {
@@ -35,8 +37,8 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule ],
-    declarations: [ NewsListComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile],
+    imports:      [ BrowserModule, FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot() ],
+    declarations: [ NewsListComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceStaticComponent],
     bootstrap:    [ BaseComponent ],
     providers: [ AlertComponent, AlertService, NewsService, AuthServices, AuthGuard, FollowAuthService, ProfileService ],
 })
