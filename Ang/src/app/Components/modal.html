@@ -10,8 +10,7 @@
     </div>
     <div class="modal-body">
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
-            <textarea [froalaEditor] formControlName="formModel" [(froalaModel)]="form.formModel"></textarea>
-            <div [froalaView]="form.formModel"></div>
+            <textarea [froalaEditor] formControlName="text"></textarea>
             <button type="submit">Submit</button>
         </form>
     </div>
