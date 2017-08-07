@@ -12,6 +12,7 @@ import { DomSanitizer} from '@angular/platform-browser'
     moduleId: module.id,
     selector: 'newslist',
     templateUrl: './news-list.template.html',
+    styleUrls: ['./news-list.component.css'],
 })
 export class NewsListComponent implements OnInit {
     constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private activateRoute: ActivatedRoute) {
@@ -21,15 +22,11 @@ export class NewsListComponent implements OnInit {
     title : string;
     text : string;
     newsList : News[] = [];
-    getShortText() {
-        this.newsList.map((elem)=>{
-            console.log(elem.text.slice(0,30))
-        })
-    }
     ngOnInit() {
         this.newsService.getData(this.currentUser).subscribe(
             data => {
                 data.map((elem: News) => {
+                    elem.active = false;
                     this.newsList.push(elem)
                 })
             },
@@ -38,6 +35,9 @@ export class NewsListComponent implements OnInit {
             }
 
         );
+    }
+    showFullNews(news) {
+        news.active = !news.active;
     }
     delNewsClick(id: string): void {
         this.newsService.delNews(id).subscribe(

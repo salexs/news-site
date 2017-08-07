@@ -4,4 +4,5 @@ export class News {
     publish_date: string;
     author: string;
     pk: string;
+    active: boolean;
 }

@@ -7,7 +7,6 @@ import { Angular2SocialLoginModule } from "angular2-social-login";
 import { ModalModule } from 'ngx-bootstrap';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccordionModule } from 'ngx-bootstrap';
 
 import { Profile } from './Components/profile.component';
 import { NewsListComponent }   from './Components/news-list.component';
@@ -39,7 +38,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports:      [ BrowserModule,AccordionModule.forRoot() ,FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
+    imports:      [ BrowserModule,FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
     declarations: [ NewsListComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent],
     bootstrap:    [ BaseComponent ],
     entryComponents: [ModalContentComponent],
