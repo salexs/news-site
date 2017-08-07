@@ -37,6 +37,7 @@ class ChangeNewsAPIView(UpdateAPIView):
 class DetailNewsAPIView(ListAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = NewsListSerializer
+    
     def get_queryset(self,*args,**kwargs): 
             print(self.__dict__)     
             queryset_list = News.objects.filter(author__username=self.kwargs['author'])

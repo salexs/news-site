@@ -9,8 +9,8 @@
                 <div class="caption">
                     <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
                     <h3>{{news.title}}</h3>
-                    <p>{{news.text}}</p>
-                    <img src = {{news.model_pic}} >
+                    <div [innerHTML]="news.text.slice(0,500)"></div>
+                    <img src={{news.model_pic}}>
                     <p (click)="openDetailAuthor(news.author)"><i>Author: {{news.author}}</i></p>
                     <p><a href="#" class="btn btn-default" role="button">Show More</a></p>
                 </div>

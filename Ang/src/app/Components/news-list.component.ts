@@ -5,7 +5,7 @@ import { News } from '../Models/newsModel'
 import { AlertService } from '../Service/status.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-
+import { DomSanitizer} from '@angular/platform-browser'
 
 
 @Component({
@@ -21,6 +21,11 @@ export class NewsListComponent implements OnInit {
     title : string;
     text : string;
     newsList : News[] = [];
+    getShortText() {
+        this.newsList.map((elem)=>{
+            console.log(elem.text.slice(0,30))
+        })
+    }
     ngOnInit() {
         this.newsService.getData(this.currentUser).subscribe(
             data => {
