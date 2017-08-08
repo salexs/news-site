@@ -1,8 +1,8 @@
 from django.conf.urls import url,include 
 from .views import (
-    UserProfileAPIView
+    ProfileAPIView
 )
 
 urlpatterns = [
-    url(r'^(?P<username>[\w-]+)/$', UserProfileAPIView.as_view()),
+    url(r'^(?P<username>[\w-]+)/$', ProfileAPIView.as_view()),
 ]

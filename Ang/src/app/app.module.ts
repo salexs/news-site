@@ -15,7 +15,8 @@ import { AuthorizationComponent } from './Components/authorization.component';
 import { BaseComponent } from './Components/base.component';
 import { AlertComponent } from './Components/status.component';
 import { HeaderComponent } from './Components/header.component';
-import { DemoModalServiceFromComponent,ModalContentComponent} from './Components/profile.component';
+import { DemoModalServiceFromComponent, ModalContentComponent} from './Components/create-news-modal.component';
+import { EditModalServiceFromComponent, EditModalContentComponent} from './Components/edit-profile-modal.component';
 
 import { AlertService} from './Service/status.service';
 import { NewsService } from './Service/news.service';
@@ -39,10 +40,10 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports:      [ BrowserModule,FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
-    declarations: [ NewsListComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent],
+    declarations: [ NewsListComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent],
     bootstrap:    [ BaseComponent ],
-    entryComponents: [ModalContentComponent],
-    providers: [ AlertComponent,ModalContentComponent, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
+    entryComponents: [ModalContentComponent,EditModalContentComponent],
+    providers: [ AlertComponent,ModalContentComponent,EditModalContentComponent, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
 })
 export class AppModule { }
 
