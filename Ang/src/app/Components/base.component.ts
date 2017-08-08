@@ -5,6 +5,7 @@ import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
     selector: 'maincraft',
     styles: [` 
             @import url('https://fonts.googleapis.com/css?family=Droid+Serif');
+
             h1 {
                 font-family: 'Droid Serif', serif;
                 width:400px;

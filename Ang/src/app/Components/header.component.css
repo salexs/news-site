@@ -1,8 +1,8 @@
 .nav {
     float:right;
 }
-.nav li a {
-    color:#7fedf2;
+.nav  li a {
+    color:#7db3ab;
     text-transform: uppercase;
 }
 .nav li a:hover {
@@ -10,5 +10,9 @@
 }
 
 .active {
+    background:#fcfcfc;
     color:black;
+}
+.active a {
+    color:black !important;
 }

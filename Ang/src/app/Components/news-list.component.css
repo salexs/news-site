@@ -1,5 +1,6 @@
 .text {
-    height: 300px;
+    max-height: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
+    padding: 0px 20px 10px 30px;
 }

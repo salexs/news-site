@@ -20,7 +20,7 @@ import { DemoModalServiceFromComponent,ModalContentComponent} from './Components
 import { AlertService} from './Service/status.service';
 import { NewsService } from './Service/news.service';
 import { AuthServices } from './Service/auth-service.service';
-import { AuthGuard } from './Service/auth.guard';
+import { AuthGuard, LogOutGuard } from './Service/auth.guard';
 import { FollowAuthService } from './Service/follow-auth.service';
 import { ProfileService } from './Service/get-profile.service';
 
@@ -32,7 +32,7 @@ let providers = {
 
 const appRoutes: Routes = [
     { path: '', component: NewsListComponent, canActivate: [AuthGuard]},
-    { path: 'login', component: AuthorizationComponent},
+    { path: 'login', component: AuthorizationComponent,canActivate: [LogOutGuard]},
     { path: 'registration', component: RegistrationComponent },
     { path: ':username', component: Profile },
 ];
@@ -42,7 +42,7 @@ const appRoutes: Routes = [
     declarations: [ NewsListComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent],
     bootstrap:    [ BaseComponent ],
     entryComponents: [ModalContentComponent],
-    providers: [ AlertComponent,ModalContentComponent, AlertService, NewsService, AuthServices, AuthGuard, FollowAuthService, ProfileService ],
+    providers: [ AlertComponent,ModalContentComponent, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
 })
 export class AppModule { }
 
