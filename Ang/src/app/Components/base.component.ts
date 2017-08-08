@@ -7,18 +7,25 @@ import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
             @import url('https://fonts.googleapis.com/css?family=Droid+Serif');
             h1 {
                 font-family: 'Droid Serif', serif;
+                width:400px;
+                color:#7fedf2;
+                margin:0;
+                padding:0;
             }
-            .nav > li > a {
-                color:white;
+            header {
+                border:1px solid black;
+                overflow:hidden;
+                background: #56628a;
+                padding: 15px 10px 15px 10px;
             }
-            .nav {
-                margin-left: 1110px;
+            header .logo {
+                float:left;
             }
     `],
     template: `
                 <div>
                     <header>
-                        <h1 routerLink="">Tagan News</h1 >
+                        <div class='logo'><h1 routerLink="">Tagan News</h1></div>
                         <header-comp></header-comp>
                     </header>
                     <alert></alert>

@@ -4,18 +4,7 @@ import { FollowAuthService } from '../Service/follow-auth.service'
 @Component({
     moduleId: module.id,
     selector: 'header-comp',
-    styles: [` 
-            @import url('https://fonts.googleapis.com/css?family=Droid+Serif');
-            h1 {
-                font-family: 'Droid Serif', serif;
-            }
-            .nav > li > a {
-                color:white;
-            }
-            .nav {
-                margin-left: 1110px;
-            }
-    `],
+    styleUrls: ['./header.component.css'],
     templateUrl: './header.component.html'
 })
 export class HeaderComponent implements OnInit, OnDestroy {

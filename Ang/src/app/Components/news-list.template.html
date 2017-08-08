@@ -5,10 +5,11 @@
                 <img src={{news.model_pic}}>
                 <div class="caption">
                     <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
-                    <h3>{{news.title}}</h3>
+                    <h2>{{news.title}}</h2>
+                    <hr>
                     <div  [ngClass]="{text:!news.active}" [innerHTML]="news.text"></div>
                     <p (click)="openDetailAuthor(news.author)"><i>Author: {{news.author}}</i></p>
-                    <p><a href="#" class="btn btn-default" role="button" (click)="showFullNews(news)">Show More</a></p>
+                    <p><a  class="btn btn-default" role="button" (click)="showFullNews(news)">Show More</a></p>
                 </div>
             </div>
         </div>

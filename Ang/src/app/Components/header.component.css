@@ -1,0 +1,14 @@
+.nav {
+    float:right;
+}
+.nav li a {
+    color:#7fedf2;
+    text-transform: uppercase;
+}
+.nav li a:hover {
+    color:black;
+}
+
+.active {
+    color:black;
+}
