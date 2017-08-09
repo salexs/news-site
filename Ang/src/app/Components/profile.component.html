@@ -1,20 +1,21 @@
 <div class="container" style="margin-top: 30px;">
     <div class="profile-head">
         <div class="col-md- col-sm-4 col-xs-12">
-            <img src="http://media.cackle.me/a6b9b753d4930d8d680207d455e7a6ff.jpg" class="img-responsive" />
-            <h6>{{user.first_name}} {{user.last_name}}</h6>
+            <img src={{user.profile.avatar}} class="img-responsive" />
+            <h6>{{user.username}}</h6>
         </div>
         <div class="col-md-5 col-sm-5 col-xs-12">
             <h5>{{user.first_name}} {{user.last_name}}</h5>
-            <p>Web Designer / Develpor </p>
+            <p>{{user.profile.skills}}</p>
             <ul>
-                <li><span class="glyphicon glyphicon-briefcase"></span> 5 years</li>
-                <li><span class="glyphicon glyphicon-map-marker"></span> Tam gde vsegda meropriyatiya</li>
+                <li><span class="glyphicon glyphicon-briefcase"></span>{{user.profile.experience}}</li>
+                <li><span class="glyphicon glyphicon-map-marker"></span>{{user.profile.location}}</li>
                 <li><span class="glyphicon glyphicon-envelope"></span><a href="#" title="mail">{{user.email}}</a></li>
+                <li><span class="glyphicon glyphicon-user"></span>{{user.profile.birth_date}}</li>
             </ul>
         </div>
     </div>
-    <newslist></newslist>
     <demo-modal-service-component></demo-modal-service-component>
     <edit-modal-service-component></edit-modal-service-component>
+    <newslist></newslist>
 </div>

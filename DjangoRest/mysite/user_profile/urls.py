@@ -6,5 +6,5 @@ from .views import (
 
 urlpatterns = [
     url(r'^(?P<username>[\w-]+)/$', ProfileAPIView.as_view()),
-    url(r'^updata/(?P<username>[\w-]+)/$', UpdateAPIView.as_view()),
+    url(r'^update/(?P<username>[\w-]+)/$', UpdateAPIView.as_view()),
 ]

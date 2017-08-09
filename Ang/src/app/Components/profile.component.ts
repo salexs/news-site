@@ -20,7 +20,7 @@ export class Profile implements OnInit {
         this.profileService.GetProfile(this.currentUser).subscribe(
             data => {
                 this.user = data
-                console.log(this.user.first_name)
+                console.log(this.user)
             },
             error => { })
     }

@@ -33,72 +33,26 @@ export class EditModalServiceFromComponent {
 @Component({
     selector: 'edit-modal-content',
     template: `
-<form class="form-horizontal main_form text-left" action=" " method="post"  id="contact_form">
-<fieldset>
-
-
-    <div class="form-group col-md-10">
-    <label class="col-md-6 control-label">First Name</label>  
-    <div class="col-md-9 inputGroupContainer">
-    <div class="input-group">
-    <input  name="first_name" placeholder="First Name" class="form-control"  type="text">
-        </div>
-    </div>
-    </div>
-
-    <!-- Text input-->
-
-    <div class="form-group col-md-6">
-    <label class="col-md-6 control-label" >Last Name</label> 
-        <div class="col-md-8 inputGroupContainer">
-        <div class="input-group">
-    <input name="last_name" placeholder="Last Name" class="form-control"  type="text">
-        </div>
-    </div>
-    </div>
-
-    <!-- Text input-->
-        <div class="form-group col-md-12">
-    <label class="col-md-10 control-label">E-Mail</label>  
-        <div class="col-md-12 inputGroupContainer">
-        <div class="input-group">
-    <input name="email" placeholder="E-Mail Address" class="form-control"  type="text">
-        </div>
-    </div>
-    </div>
-
-
-    <!-- Text input-->
-        
-    <div class="form-group col-md-12">
-    <label class="col-md-10 control-label">Phone #</label>  
-        <div class="col-md-12 inputGroupContainer">
-        <div class="input-group">
-    <input name="phone" placeholder="(845)555-1212" class="form-control" type="text">
-        </div>
-    </div>
-    </div>
-
-    <!-- Text input-->
-        
-    <div class="form-group col-md-12">
-    <label class="col-md-10 control-label">Address</label>
-        <div class="col-md-12 inputGroupContainer">
-        <div class="input-group">
-                <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
-    </div>
-    </div>
-    </div>
-
-    <div class="form-group col-md-12">
-    <label class="col-md-10 control-label">Project Description</label>
-        <div class="col-md-12 inputGroupContainer">
-        <div class="input-group">
-                <textarea class="form-control" name="comment" placeholder="Project Description"></textarea>
-    </div>
-    </div>
-    </div>
-    </fieldset>
+    <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Username</label>
+    <input class="form-control" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Last Name</label>
+    <input  placeholder="Last Name">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputFile">File input</label>
+    <input type="file" id="exampleInputFile">
+    <p class="help-block">Example block-level help text here.</p>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Check me out
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
   `
 })
@@ -118,3 +72,6 @@ export class EditModalContentComponent {
         console.log(this.forms.value)
     }
 }
+
+//Examined in detail with the serializers and views Django frameworks to extend the base functionality of the Django user model.
+//On the server (Python/Django) added to the basic model of the new user field associated with the user profile
