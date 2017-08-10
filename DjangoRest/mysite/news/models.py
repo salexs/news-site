@@ -11,4 +11,3 @@ class News(models.Model):
     publish_date = models.DateField(auto_now=True)
     model_pic = models.ImageField(null=True,blank=True)
 
-    

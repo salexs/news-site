@@ -28,10 +28,16 @@ export class DemoModalServiceFromComponent {
 @Component({
     selector: 'modal-content',
     template: `
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Create News</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <input formControlName="title">
         <textarea [froalaEditor] formControlName="text"></textarea>
-        <button type="submit">Submit</button>
+        <button type="submit" (click)="bsModalRef.hide()">Submit</button>
         </form>
   `
 })

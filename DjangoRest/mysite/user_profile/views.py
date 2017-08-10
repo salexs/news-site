@@ -1,3 +1,5 @@
+import base64
+from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Profile
@@ -19,8 +21,6 @@ from rest_framework.permissions import (
     IsAdminUser
 )
 
-
-
 class ProfileAPIView(RetrieveAPIView):
     lookup_field = 'username'
     serializer_class = UserSerializer
@@ -38,6 +38,21 @@ class UpdateAPIView(APIView):
             birth_date = request.data['profile']['birth_date'],
             about_myself = request.data['profile']['about_myself'],
             skills = request.data['profile']['skills'],
-            avatar = request.data['profile']['avatar'],
         )
+
+        return Response('dsfs')
+
+class UpdateAvatarAPIView(APIView):
+
+    def create_image(self,imgstr):
+        data = ContentFile(base64.b64decode(imgstr), name='shaurma1.' + 'png')
+        return data
+
+    def post(self, request, username, format=None):
+        user = User.objects.filter(username = username)
+        profile = Profile.objects.filter(user=user[0])
+        p = profile.first()
+        print(p)
+        file = ContentFile(base64.b64decode(request.POST['file']))
+        print(file)
         return Response('dsfs')
