@@ -1,8 +1,8 @@
-import base64
-from django.core.files.base import ContentFile
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from .models import Profile
+from rest_framework.decorators import api_view,permission_classes
+
 from rest_framework.response import Response
 from django.http import JsonResponse
 from .serializers import UserSerializer
@@ -22,14 +22,17 @@ from rest_framework.permissions import (
 )
 
 class ProfileAPIView(RetrieveAPIView):
+    permission_classes = (IsAuthenticated,)
     lookup_field = 'username'
     serializer_class = UserSerializer
     queryset = User.objects.all()
 
 class UpdateAPIView(APIView):
+    permission_classes = (IsOwnerOrReadOnly,IsAuthenticated,)
 
     def put(self, request, username, format=None):
         user = User.objects.filter(username = username)
+        self.check_object_permissions(self.request, user.first())
         user.update(username = request.data['username'],email = request.data['email'],first_name= request.data['first_name'],last_name= request.data['last_name'])
         profile = Profile.objects.filter(user=user[0])
         profile.update(
@@ -43,16 +46,12 @@ class UpdateAPIView(APIView):
         return Response('dsfs')
 
 class UpdateAvatarAPIView(APIView):
+    permission_classes = (IsAuthenticated,IsOwnerOrReadOnly,)
+    
+    def put(self, request, username, format=None):
+        user = User.objects.filter(username = username).first()
+        self.check_object_permissions(self.request, user)
+        user.profile.avatar = request.data['file']
+        user.save()
+        return Response('sdfs')
 
-    def create_image(self,imgstr):
-        data = ContentFile(base64.b64decode(imgstr), name='shaurma1.' + 'png')
-        return data
-
-    def post(self, request, username, format=None):
-        user = User.objects.filter(username = username)
-        profile = Profile.objects.filter(user=user[0])
-        p = profile.first()
-        print(p)
-        file = ContentFile(base64.b64decode(request.POST['file']))
-        print(file)
-        return Response('dsfs')

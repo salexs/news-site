@@ -19,6 +19,9 @@ from .models import News
 class NewsListAPIView(ListAPIView):
     serializer_class = NewsListSerializer
     permission_classes = [IsAuthenticated]
+    paginate_by = 3
+    paginate_by_param = 'page_size'
+    max_paginate_by = 100
     queryset = News.objects.all()
 
 class NewsCreateAPIView(CreateAPIView):
@@ -39,7 +42,6 @@ class DetailNewsAPIView(ListAPIView):
     serializer_class = NewsListSerializer
     
     def get_queryset(self,*args,**kwargs): 
-            print(self.__dict__)     
             queryset_list = News.objects.filter(author__username=self.kwargs['author'])
             return queryset_list
 

@@ -12,8 +12,13 @@ export class ChangeProfileService {
     }
     updateProfile(form: any): Observable<any> {
         const body = JSON.stringify(form);
-        let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
-        return this.http.put("http://localhost:8000/api/profile/update/" + JSON.parse(localStorage.getItem('currentUser')).username + "/", body, { headers: headers })
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            let headers = new Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token, 'Content-Type': 'application/json;charset=utf-8' });
+            var options = new RequestOptions({ headers: headers });
+        } else {
+            var options = new RequestOptions({});
+        }
+        return this.http.put("http://localhost:8000/api/profile/update/" + JSON.parse(localStorage.getItem('currentUser')).username + "/", body, options)
             .map((resp: Response) => {
                 resp.json()
             })
@@ -22,7 +27,13 @@ export class ChangeProfileService {
     upload(fileToUpload: any): Observable<any> {
         let form = new FormData();
         form.append('file', fileToUpload);
-        return this.http.post("http://localhost:8000/api/profile/update-avatar/" + JSON.parse(localStorage.getItem('currentUser')).username + "/", form)
+        if (JSON.parse(localStorage.getItem('currentUser'))) {
+            let headers = new Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token});
+            var options = new RequestOptions({ headers: headers });
+        } else {
+            var options = new RequestOptions({});
+        }
+        return this.http.put("http://localhost:8000/api/profile/update-avatar/" + JSON.parse(localStorage.getItem('currentUser')).username + "/", form, options)
             .map((resp: Response) => {
                 resp.json()
             })

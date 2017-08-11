@@ -13,6 +13,7 @@ import { ChangeProfileService } from '../Service/change-profile.service'
 })
 export class Profile implements OnInit {
     currentUser: string;
+    permission: boolean;
     user: any = {};
     @ViewChild("fileInput") fileInput;
 
@@ -21,6 +22,8 @@ export class Profile implements OnInit {
         this.currentUser = activateRoute.snapshot.params['username'];
     }
     ngOnInit() {
+
+        this.permission = JSON.parse(localStorage.getItem('currentUser')).username == this.currentUser;
         this.profileService.GetProfile(this.currentUser).subscribe(
             data => {
                 this.user = data
@@ -34,6 +37,12 @@ export class Profile implements OnInit {
             let fileToUpload = fi.files[0];
             this.changeProfileService.upload(fileToUpload).subscribe(
                 data => {
+                    this.profileService.GetProfile(this.currentUser).subscribe(
+                        data => {
+                            this.user = data
+                            console.log(this.user)
+                        },
+                        error => { })
                 },
                 error => { })
         }

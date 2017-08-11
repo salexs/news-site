@@ -26,6 +26,7 @@ export class NewsListComponent implements OnInit {
         this.newsService.getData(this.currentUser).subscribe(
             data => {
                 data.map((elem: News) => {
+                    console.log(elem)
                     elem.active = false;
                     this.newsList.push(elem)
                 })

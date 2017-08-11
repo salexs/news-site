@@ -73,7 +73,10 @@ body { background:#ffffff;}
     text-transform: uppercase;
     margin-bottom: 0;
 }
-
+#profile-myself{
+    background: #aac8c4;
+    border-radius: 13px;
+}
 
 @media all and (max-width:768px){
 
@@ -94,4 +97,24 @@ background-color:#ffffff !important; transition:all ease 0.5s;border-top: 0px so
 .nav-menu li { width:50%;}
 .bio-table>tbody>tr>td {font-size: 13px;}
 
+}
+
+.edit-avatar {
+    width: 145px;
+    margin: 0 auto;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-weight: 10px;
+}
+
+#add-avatar {
+    border:none;
 }
