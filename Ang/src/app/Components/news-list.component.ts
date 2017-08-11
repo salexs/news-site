@@ -5,7 +5,8 @@ import { News } from '../Models/newsModel'
 import { AlertService } from '../Service/status.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { DomSanitizer} from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 
 @Component({
@@ -15,19 +16,22 @@ import { DomSanitizer} from '@angular/platform-browser'
     styleUrls: ['./news-list.component.css'],
 })
 export class NewsListComponent implements OnInit {
+
+    currentUser: string;
+    title: string;
+    text: string;
+    paginationCountPage: number;
+    paginationLimit: number;
+
+    newsList: News[] = [];
     constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private activateRoute: ActivatedRoute) {
         this.currentUser = activateRoute.snapshot.params['username'];
-     }
-    currentUser : string;
-    title : string;
-    text : string;
-    newsList : News[] = [];
+    }
     ngOnInit() {
         this.newsService.getData(this.currentUser).subscribe(
             data => {
-                data.map((elem: News) => {
-                    console.log(elem)
-                    elem.active = false;
+                this.paginationCountPage = Math.floor(data.count / data.results.length);
+                data.results.map(elem => {
                     this.newsList.push(elem)
                 })
             },
@@ -43,8 +47,8 @@ export class NewsListComponent implements OnInit {
     delNewsClick(id: string): void {
         this.newsService.delNews(id).subscribe(
             data => {
-                var index = this.newsList.findIndex(elem=> elem.pk==id);
-                this.newsList.splice(index,1)
+                var index = this.newsList.findIndex(elem => elem.pk == id);
+                this.newsList.splice(index, 1)
             },
             error => {
                 if (error.status == "403") this.alertService.error('You are not owner this news!!!');
@@ -65,7 +69,7 @@ export class NewsListComponent implements OnInit {
 
         );
     }
-    openDetailAuthor(author:string) {
+    openDetailAuthor(author: string) {
         this.router.navigate([author]);
     }
 }

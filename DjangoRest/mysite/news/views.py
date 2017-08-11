@@ -7,7 +7,7 @@ from rest_framework.generics import (
     RetrieveAPIView,
     DestroyAPIView
     )
-
+from .pagination import PostLimitOffsetPagination
 from rest_framework.permissions import (
     AllowAny,
     IsAuthenticated,
@@ -19,9 +19,7 @@ from .models import News
 class NewsListAPIView(ListAPIView):
     serializer_class = NewsListSerializer
     permission_classes = [IsAuthenticated]
-    paginate_by = 3
-    paginate_by_param = 'page_size'
-    max_paginate_by = 100
+    pagination_class = PostLimitOffsetPagination
     queryset = News.objects.all()
 
 class NewsCreateAPIView(CreateAPIView):
@@ -40,6 +38,7 @@ class ChangeNewsAPIView(UpdateAPIView):
 class DetailNewsAPIView(ListAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = NewsListSerializer
+    pagination_class = PostLimitOffsetPagination
     
     def get_queryset(self,*args,**kwargs): 
             queryset_list = News.objects.filter(author__username=self.kwargs['author'])

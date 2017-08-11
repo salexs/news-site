@@ -19,13 +19,12 @@ export class NewsService {
         } else {
             var options = new RequestOptions({});
         }
-
         if (currentUser == undefined) {
-            return this.http.get('http://localhost:8000/api/news/', options)
+            return this.http.get('http://localhost:8000/api/news/?limit=2&offset=2', options)
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         } else {
-            return this.http.get('http://localhost:8000/api/news/' + currentUser + '/', options)
+            return this.http.get('http://localhost:8000/api/news/'+currentUser+'/?limit=2&offset=2', options)
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         }

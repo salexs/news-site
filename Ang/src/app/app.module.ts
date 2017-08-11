@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { Profile } from './Components/profile.component';
 import { NewsListComponent }   from './Components/news-list.component';
+import { Pagination } from './Components/pagination.component'
 import { RegistrationComponent } from './Components/registration.component';
 import { AuthorizationComponent } from './Components/authorization.component';
 import { BaseComponent } from './Components/base.component';
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports:      [ BrowserModule,FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
-    declarations: [ NewsListComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent],
+    declarations: [ NewsListComponent,Pagination,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent],
     bootstrap:    [ BaseComponent ],
     entryComponents: [ModalContentComponent,EditModalContentComponent],
     providers: [ AlertComponent,ModalContentComponent,EditModalContentComponent, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
