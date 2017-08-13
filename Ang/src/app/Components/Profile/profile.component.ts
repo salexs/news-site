@@ -1,7 +1,7 @@
 import { Component, DoCheck, OnInit, OnChanges, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProfileService } from '../Service/get-profile.service';
-import { ChangeProfileService } from '../Service/change-profile.service'
+import { ProfileService } from '../../Service/get-profile.service';
+import { ChangeProfileService } from '../../Service/change-profile.service'
 
 
 @Component({

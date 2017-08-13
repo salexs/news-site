@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, Input } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
-import { FollowAuthService } from '../Service/follow-auth.service'
+import { FollowAuthService } from '../../Service/follow-auth.service'
 @Component({
     moduleId: module.id,
     selector: 'header-comp',

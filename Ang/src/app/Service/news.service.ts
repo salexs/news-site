@@ -20,11 +20,11 @@ export class NewsService {
             var options = new RequestOptions({});
         }
         if (currentUser == undefined) {
-            return this.http.get('http://localhost:8000/api/news/?limit=2&offset=2', options)
+            return this.http.get('http://localhost:8000/api/news/?page=1', options)
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         } else {
-            return this.http.get('http://localhost:8000/api/news/'+currentUser+'/?limit=2&offset=2', options)
+            return this.http.get('http://localhost:8000/api/news/'+currentUser+'/?page=1', options)
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         }

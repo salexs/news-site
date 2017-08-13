@@ -1,9 +1,9 @@
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { NewsService } from '../Service/news.service';
+import { NewsService } from '../../Service/news.service';
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
-import { ChangeProfileService } from '../Service/change-profile.service'
+import { ChangeProfileService } from '../../Service/change-profile.service'
 import { ActivatedRoute } from '@angular/router';
 
 

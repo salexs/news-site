@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RegistrationService } from '../Service/registration-service.service';
+import { RegistrationService } from '../../Service/registration-service.service';
 import { Response } from '@angular/http';
-import { User } from '../Models/registrationModel';
+import { User } from '../../Models/registrationModel';
 import { Router } from '@angular/router';
-import { AlertService } from '../Service/status.service';
+import { AlertService } from '../../Service/status.service';
 
 @Component({
     selector: 'registration',

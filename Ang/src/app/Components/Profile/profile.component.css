@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display')
 
-body { background:#ffffff;}
+
 
 .page-header {
     background:#ccc;margin:0;
@@ -7,13 +8,15 @@ body { background:#ffffff;}
 
 .profile-head { 
     width:100%;background-color: rgb(144, 161, 99);
+    background: linear-gradient(to right, #3C5665, #3AAA5B);
     float: left;padding: 15px 5px;
 }
 .profile-head img { 
     height:150px; width:150px;
     margin:0 auto;
     border:5px solid #fff;
-    border-radius:5px;
+    border-radius:20px;
+    object-fit: cover;
 }
 .profile-head h5 {
     width: 100%;
@@ -72,6 +75,11 @@ body { background:#ffffff;}
     font-size: 15px;
     text-transform: uppercase;
     margin-bottom: 0;
+    font-family: 'Sedgwick Ave Display', cursive;
+}
+
+.profile-head h5 {
+    font-family: 'Sedgwick Ave Display', cursive;
 }
 #profile-myself{
     background: #aac8c4;

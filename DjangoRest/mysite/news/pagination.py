@@ -2,7 +2,16 @@ from rest_framework.pagination import (
     LimitOffsetPagination,
     PageNumberPagination,
 )
+from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response 
 
-class PostLimitOffsetPagination(LimitOffsetPagination):
-    max_limit = 10
-    default_limit = 2
+class PostLimitOffsetPagination(PageNumberPagination):
+    page_size = 6
+
+    def get_paginated_response(self, data):
+        print(self.page.__dict__)
+        return Response({
+            "pageNumber":self.page.number,
+            "count": self.page.paginator.count,
+            "results": data
+        })

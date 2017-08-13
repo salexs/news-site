@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'news',
     'corsheaders',
     'user_profile',
-    'refreshtoken',
 ]
 
 
@@ -113,7 +112,8 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:4200',
     '192.168.88.201:3000',
     'localhost',
-    'accounts.google.com'
+    'accounts.google.com',
+    '192.168.0.105:4200'
 )
 CORS_ALLOW_METHODS = (
     'DELETE',

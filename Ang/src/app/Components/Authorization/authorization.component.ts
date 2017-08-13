@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthServices } from '../Service/auth-service.service';
+import { AuthServices } from '../../Service/auth-service.service';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { User } from '../Models/authorizationModel';
-import { AlertService } from '../Service/status.service';
+import { User } from '../../Models/authorizationModel';
+import { AlertService } from '../../Service/status.service';
 import { AuthService } from "angular2-social-login";
 
 @Component({

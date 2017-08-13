@@ -1,8 +1,8 @@
 import { Component, DoCheck, OnInit, OnChanges } from '@angular/core';
-import { NewsService } from '../Service/news.service';
+import { NewsService } from '../..//Service/news.service';
 import { Response } from '@angular/http';
-import { News } from '../Models/newsModel'
-import { AlertService } from '../Service/status.service'
+import { News } from '../../Models/newsModel'
+import { AlertService } from '../../Service/status.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -30,6 +30,7 @@ export class NewsListComponent implements OnInit {
     ngOnInit() {
         this.newsService.getData(this.currentUser).subscribe(
             data => {
+                console.log(data)
                 this.paginationCountPage = Math.floor(data.count / data.results.length);
                 data.results.map(elem => {
                     this.newsList.push(elem)

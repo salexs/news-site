@@ -8,16 +8,16 @@ import { ModalModule } from 'ngx-bootstrap';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { Profile } from './Components/profile.component';
-import { NewsListComponent }   from './Components/news-list.component';
-import { Pagination } from './Components/pagination.component'
-import { RegistrationComponent } from './Components/registration.component';
-import { AuthorizationComponent } from './Components/authorization.component';
-import { BaseComponent } from './Components/base.component';
-import { AlertComponent } from './Components/status.component';
-import { HeaderComponent } from './Components/header.component';
-import { DemoModalServiceFromComponent, ModalContentComponent} from './Components/create-news-modal.component';
-import { EditModalServiceFromComponent, EditModalContentComponent} from './Components/edit-profile-modal.component';
+import { Profile } from './Components/Profile/profile.component';
+import { NewsListComponent }   from './Components/News/news-list.component';
+import { Pagination } from './Components/Pagination/pagination.component'
+import { RegistrationComponent } from './Components/Registration/registration.component';
+import { AuthorizationComponent } from './Components/Authorization/authorization.component';
+import { BaseComponent } from './Components/Base/base.component';
+import { AlertComponent } from './Components/Status/status.component';
+import { HeaderComponent } from './Components/Header/header.component';
+import { DemoModalServiceFromComponent, ModalContentComponent} from './Components/CreateNewsModal/create-news-modal.component';
+import { EditModalServiceFromComponent, EditModalContentComponent} from './Components/EditProfileModal/edit-profile-modal.component';
 
 import { AlertService} from './Service/status.service';
 import { NewsService } from './Service/news.service';

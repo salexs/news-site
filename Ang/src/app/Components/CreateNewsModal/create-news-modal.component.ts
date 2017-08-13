@@ -1,7 +1,7 @@
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
-import { NewsService } from '../Service/news.service';
+import { NewsService } from '../../Service/news.service';
 import { Component, OnInit,TemplateRef } from '@angular/core';
 
 @Component({
