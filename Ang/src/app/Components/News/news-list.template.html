@@ -17,5 +17,5 @@
     </div>
 </div>
 <div class='col-md-8 col-md-offset-3'>
-    <pagination [paginationCountPage]=paginationCountPage  [(currentPaginationPage)]="currentPaginationPage"></pagination>
+    <pagination [paginationCountPage]=paginationCountPage (changePaginationPage)="ngOnInit($event)" [currentPaginationPage]="currentPaginationPage"></pagination>
 </div>

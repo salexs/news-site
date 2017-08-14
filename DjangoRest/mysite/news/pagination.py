@@ -6,7 +6,7 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response 
 
 class PostLimitOffsetPagination(PageNumberPagination):
-    page_size = 6
+    page_size = 4
 
     def get_paginated_response(self, data):
         print(self.page.__dict__)
