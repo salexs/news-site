@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit, OnChanges, TemplateRef, ViewChild } from '@angular/core';
+import { Component, DoCheck, OnInit, Input,Output, OnChanges, TemplateRef, EventEmitter,ViewChild } from '@angular/core';
 
 
 
@@ -9,7 +9,23 @@ import { Component, DoCheck, OnInit, OnChanges, TemplateRef, ViewChild } from '@
     templateUrl: './pagination.component.html',
 
 })
-export class Pagination  {
-    
+export class Pagination implements OnChanges {
+    @Input() paginationCountPage: number;
+    @Input() currentPaginationPage: number;
+    @Output() changePaginationPage = new EventEmitter<number>();
+    pagination: any = [];
+    ngOnChanges() {
+        console.log('paginationCountPage', this.paginationCountPage)
+        console.log('currentPaginationPage', this.currentPaginationPage)
+        for (var i = 1; i < this.paginationCountPage; i++) {
+            this.pagination.push(i)
+        }
 
+    }
+    onPageChange(page:number) {
+
+        this.currentPaginationPage = page;
+        this.changePaginationPage.emit(page);
+        console.log('dsaf',this.currentPaginationPage)
+    }
 }

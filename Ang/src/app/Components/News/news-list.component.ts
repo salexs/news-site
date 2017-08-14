@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, DoCheck } from '@angular/core';
 import { NewsService } from '../..//Service/news.service';
 import { Response } from '@angular/http';
 import { News } from '../../Models/newsModel'
@@ -15,23 +15,23 @@ import { DomSanitizer } from '@angular/platform-browser';
     templateUrl: './news-list.template.html',
     styleUrls: ['./news-list.component.css'],
 })
-export class NewsListComponent implements OnInit {
+export class NewsListComponent implements OnInit, OnChanges {
 
     currentUser: string;
     title: string;
     text: string;
     paginationCountPage: number;
-    paginationLimit: number;
+    currentPaginationPage: number;
 
     newsList: News[] = [];
     constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private activateRoute: ActivatedRoute) {
         this.currentUser = activateRoute.snapshot.params['username'];
     }
     ngOnInit() {
-        this.newsService.getData(this.currentUser).subscribe(
+        this.newsService.getData(this.currentUser, this.currentPaginationPage).subscribe(
             data => {
-                console.log(data)
-                this.paginationCountPage = Math.floor(data.count / data.results.length);
+                this.currentPaginationPage = data.pageNumber;
+                this.paginationCountPage = Math.ceil(data.count / data.results.length);
                 data.results.map(elem => {
                     this.newsList.push(elem)
                 })
@@ -42,35 +42,51 @@ export class NewsListComponent implements OnInit {
 
         );
     }
-    showFullNews(news) {
-        news.active = !news.active;
-    }
-    delNewsClick(id: string): void {
-        this.newsService.delNews(id).subscribe(
+    ngOnChanges() {
+        this.newsService.getData(this.currentUser, this.currentPaginationPage).subscribe(
             data => {
-                var index = this.newsList.findIndex(elem => elem.pk == id);
-                this.newsList.splice(index, 1)
+                this.currentPaginationPage = data.pageNumber;
+                this.paginationCountPage = Math.ceil(data.count / data.results.length);
+                data.results.map(elem => {
+                    this.newsList.push(elem)
+                })
             },
             error => {
-                if (error.status == "403") this.alertService.error('You are not owner this news!!!');
+                this.alertService.error('You are not authorized!!!');
             }
 
         );
     }
-    addNewsClick(news: any): void {
-        this.title = '';
-        this.text = '';
-        this.newsService.createNews(news).subscribe(
-            data => {
-                this.newsList.push(data)
-            },
-            error => {
-                if (error.status == "403") this.alertService.error('You are not owner this news!!!');
-            }
 
-        );
-    }
-    openDetailAuthor(author: string) {
-        this.router.navigate([author]);
-    }
+showFullNews(news) {
+    news.active = !news.active;
+}
+delNewsClick(id: string): void {
+    this.newsService.delNews(id).subscribe(
+        data => {
+            var index = this.newsList.findIndex(elem => elem.pk == id);
+            this.newsList.splice(index, 1)
+        },
+        error => {
+            if (error.status == "403") this.alertService.error('You are not owner this news!!!');
+        }
+
+    );
+}
+addNewsClick(news: any): void {
+    this.title = '';
+    this.text = '';
+    this.newsService.createNews(news).subscribe(
+        data => {
+            this.newsList.push(data)
+        },
+        error => {
+            if (error.status == "403") this.alertService.error('You are not owner this news!!!');
+        }
+
+    );
+}
+openDetailAuthor(author: string) {
+    this.router.navigate([author]);
+}
 }
