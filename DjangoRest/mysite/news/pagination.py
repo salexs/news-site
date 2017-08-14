@@ -1,3 +1,4 @@
+import math
 from rest_framework.pagination import (
     LimitOffsetPagination,
     PageNumberPagination,
@@ -11,6 +12,7 @@ class PostLimitOffsetPagination(PageNumberPagination):
     def get_paginated_response(self, data):
         print(self.page.__dict__)
         return Response({
+            "countPage": math.ceil(self.page.paginator.count/self.page_size),
             "pageNumber":self.page.number,
             "count": self.page.paginator.count,
             "results": data

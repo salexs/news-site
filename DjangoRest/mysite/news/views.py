@@ -18,9 +18,20 @@ from .models import News
 
 class NewsListAPIView(ListAPIView):
     serializer_class = NewsListSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = []
     pagination_class = PostLimitOffsetPagination
     queryset = News.objects.all()
+    def get_queryset(self,*args,**kwargs):
+        if 'search' in self.request.GET:
+            word = self.request.GET['search']
+            queryset = News.objects.filter(title = word)
+            return queryset
+        if 'filter' in self.request.GET:
+            word = self.request.GET['filter']
+            queryset = News.objects.filter(tag = word)
+            return queryset
+        queryset = News.objects.all()    
+        return queryset
 
 class NewsCreateAPIView(CreateAPIView):
     serializer_class = NewsListSerializer
@@ -34,6 +45,11 @@ class ChangeNewsAPIView(UpdateAPIView):
     serializer_class = UpdateNewsSerializer
     queryset = News.objects.all()
     
+class SearchNewsApiView(RetrieveAPIView):
+    serializer_class = NewsListSerializer
+    pagination_class = PostLimitOffsetPagination
+    queryset = News.objects.all()
+    lookup_field = 'title'
 
 class DetailNewsAPIView(ListAPIView):
     permission_classes = [IsOwnerOrReadOnly]

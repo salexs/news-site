@@ -13,5 +13,5 @@ urlpatterns = [
     url(r'^(?P<author>[\w-]+)/$', DetailNewsAPIView.as_view()),
     url(r'^(?P<pk>[\w-]+)/$', DetailNewsAPIView.as_view()),
     url(r'^update/(?P<pk>[\w-]+)/$', ChangeNewsAPIView.as_view()),
-    url(r'^delete/(?P<pk>[\w-]+)/$', DeleteAPIView.as_view())
+    url(r'^delete/(?P<pk>[\w-]+)/$', DeleteAPIView.as_view()),
 ]
