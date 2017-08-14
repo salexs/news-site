@@ -34,7 +34,7 @@ export class NewsListComponent implements OnInit {
         this.newsService.getData(this.currentUser, this.currentPaginationPage).subscribe(
             data => {
                 this.currentPaginationPage = data.pageNumber;
-                this.paginationCountPage = Math.ceil(data.count / 4);
+                this.paginationCountPage = data.countPage;
                 data.results.map(elem => {
                     this.newsList.push(elem)
                 })

@@ -1,3 +1,4 @@
+
 <div class='col-md-8 col-md-offset-3' id="news-container">
     <div class="row">
         <div class="col-md-9" *ngFor="let news of newsList">
@@ -7,10 +8,17 @@
                     <i class="fa fa-trash-o" aria-hidden="true" (click)="delNewsClick(news.pk)"></i>
                     <h2>{{news.title}}</h2>
                     <hr>
-                    <div  [ngClass]="{text:!news.active}" [innerHTML]="news.text"></div>
+                    <div [ngClass]="{text:!news.active}" [innerHTML]="news.text"></div>
+                    <hr>
+                    <span class="label label-default">Habrhabr</span>
+                    <span class="label label-primary">web development</span>
+                    <span class="label label-success">Success Label</span>
+                    <span class="label label-info">Info Label</span>
+                    <span class="label label-warning">Warning Label</span>
+                    <span class="label label-danger">Danger Label</span>
                     <hr>
                     <p (click)="openDetailAuthor(news.author)"><i>Author: {{news.author}}</i></p>
-                    <p><a  class="btn btn-default" role="button" (click)="showFullNews(news)">Show More</a></p>
+                    <p><a class="btn btn-default" role="button" (click)="showFullNews(news)">Show More</a></p>
                 </div>
             </div>
         </div>

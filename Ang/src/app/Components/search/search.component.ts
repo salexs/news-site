@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { NewsService } from '../..//Service/news.service';
+
 
 @Component({
-  selector: 'app-search',
+  selector: 'search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private newsService:NewsService) { }
+  searchWord: string;
+  Search() {
+    
   }
-
 }
