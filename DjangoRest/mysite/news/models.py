@@ -12,6 +12,7 @@ class News(models.Model):
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
+        null=True
     )
     publish_date = models.DateField(auto_now=True)
     model_pic = models.ImageField(null=True,blank=True)

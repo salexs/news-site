@@ -15,7 +15,7 @@ export class DemoModalServiceFromComponent {
     public openModalWithComponent() {
         let form = new FormGroup({
             title: new FormControl(),
-            text: new FormControl()
+            text: new FormControl(),
 
         });
         this.bsModalRef = this.modalService.show(ModalContentComponent);
@@ -45,7 +45,8 @@ export class ModalContentComponent {
     constructor(private newsService: NewsService, public bsModalRef: BsModalRef) { }
     public form: FormGroup = new FormGroup({
         title: new FormControl(),
-        text: new FormControl()
+        text: new FormControl(),
+
     });
     onSubmit() {
         console.log(this.form.value)

@@ -34,16 +34,19 @@ class NewsListAPIView(ListAPIView):
         return queryset
 
 class NewsCreateAPIView(CreateAPIView):
-    serializer_class = NewsListSerializer
+    serializer_class = CreateNewsSerializer
     queryset = News.objects.all()
     permission_classes = []
-    def perform_create(self,serializer):
-        serializer.save(author=self.request.user)
+    #def perform_create(self,serializer):
+        #serializer.save(author=self.request.user)
 
 class ChangeNewsAPIView(UpdateAPIView):
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = []
     serializer_class = UpdateNewsSerializer
     queryset = News.objects.all()
+    def perform_update(self, serializer):
+        tag = self.request.data['tags']
+        serializer.save(tags=tag)
     
 class SearchNewsApiView(RetrieveAPIView):
     serializer_class = NewsListSerializer
