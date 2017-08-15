@@ -24,7 +24,7 @@ class NewsListAPIView(ListAPIView):
     def get_queryset(self,*args,**kwargs):
         if 'search' in self.request.GET:
             word = self.request.GET['search']
-            queryset = News.objects.filter(title = word)
+            queryset = News.objects.filter(title__icontains = word)
             return queryset
         if 'filter' in self.request.GET:
             word = self.request.GET['filter']
@@ -36,7 +36,7 @@ class NewsListAPIView(ListAPIView):
 class NewsCreateAPIView(CreateAPIView):
     serializer_class = NewsListSerializer
     queryset = News.objects.all()
-    permission_classes = [IsAuthenticated,IsOwnerOrReadOnly]
+    permission_classes = []
     def perform_create(self,serializer):
         serializer.save(author=self.request.user)
 

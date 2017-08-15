@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsService } from '../..//Service/news.service';
-
+import { NewsService } from '../../Service/news.service';
+import { FilterService } from '../../Service/subjects.service';
 
 @Component({
   selector: 'search',
@@ -8,10 +8,10 @@ import { NewsService } from '../..//Service/news.service';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
-
-  constructor(private newsService:NewsService) { }
   searchWord: string;
-  Search() {
-    
+  constructor(private newsService:NewsService,private filterService:FilterService) { }
+  
+  Search(name:string) {
+    this.filterService.Search(name);
   }
 }

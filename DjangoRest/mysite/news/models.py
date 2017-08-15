@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 
 
+
 class Tag(models.Model):
     text = models.CharField(max_length=50)
 
@@ -14,4 +15,9 @@ class News(models.Model):
     )
     publish_date = models.DateField(auto_now=True)
     model_pic = models.ImageField(null=True,blank=True)
-    tag = models.ForeignKey(Tag,on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag)
+    
+    
+
+
+    

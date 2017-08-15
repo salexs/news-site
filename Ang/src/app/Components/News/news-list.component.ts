@@ -6,6 +6,8 @@ import { AlertService } from '../../Service/status.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
+import { FilterService } from '../../Service/subjects.service';
+import { Subscription } from 'rxjs/Subscription';
 
 
 
@@ -22,16 +24,19 @@ export class NewsListComponent implements OnInit {
     text: string;
     paginationCountPage: number;
     currentPaginationPage: number;
+    search: string;
+    subscription: Subscription;
 
     newsList: News[] = [];
-    constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private activateRoute: ActivatedRoute) {
+    constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private filterService: FilterService, private activateRoute: ActivatedRoute) {
         this.currentUser = activateRoute.snapshot.params['username'];
+        this.subscription = this.filterService.getSearch().subscribe(data => {this.search = data;console.log(3,data);this.getData();})
     }
     ngOnInit() {
         this.newsList = [];
-        this.currentPaginationPage=arguments[0];
+        console.log('1',this.search)
 
-        this.newsService.getData(this.currentUser, this.currentPaginationPage).subscribe(
+        this.newsService.getData(this.currentUser, this.currentPaginationPage, this.search).subscribe(
             data => {
                 this.currentPaginationPage = data.pageNumber;
                 this.paginationCountPage = data.countPage;
@@ -44,6 +49,29 @@ export class NewsListComponent implements OnInit {
             }
 
         );
+    }
+    getData() {
+        this.newsList = [];
+        console.log('1',this.search)
+
+        this.newsService.getData(this.currentUser, this.currentPaginationPage,this.search).subscribe(
+            data => {
+                this.currentPaginationPage = data.pageNumber;
+                this.paginationCountPage = data.countPage;
+                data.results.map(elem => {
+                    this.newsList.push(elem)
+                })
+            },
+            error => {
+                this.alertService.error('You are not authorized!!!');
+            }
+
+        );
+    }
+
+    setPage(page) {
+        this.currentPaginationPage = page;
+        this.getData()
     }
 
     showFullNews(news) {
@@ -76,5 +104,8 @@ export class NewsListComponent implements OnInit {
     }
     openDetailAuthor(author: string) {
         this.router.navigate([author]);
+    }
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 }

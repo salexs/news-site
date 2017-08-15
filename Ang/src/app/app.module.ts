@@ -28,6 +28,7 @@ import { AuthGuard, LogOutGuard } from './Service/auth.guard';
 import { FollowAuthService } from './Service/follow-auth.service';
 import { ProfileService } from './Service/get-profile.service';
 import { ChangeProfileService } from './Service/change-profile.service';
+import { FilterService } from './Service/subjects.service';
 
 
 
@@ -50,7 +51,7 @@ const appRoutes: Routes = [
     declarations: [ NewsListComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent,Pagination, FilterComponent, SearchComponent,],
     bootstrap:    [ BaseComponent ],
     entryComponents: [ModalContentComponent,EditModalContentComponent],
-    providers: [ AlertComponent,ModalContentComponent,EditModalContentComponent, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
+    providers: [ AlertComponent,ModalContentComponent,EditModalContentComponent,FilterService, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
 })
 export class AppModule { }
 

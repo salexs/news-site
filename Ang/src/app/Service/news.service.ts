@@ -12,7 +12,7 @@ export class NewsService {
     constructor(private http: Http, private authService: AuthServices) { }
 
 
-    getData(currentUser: string, page:number=1): Observable<any> {
+    getData(currentUser: string, page:number=1,search:string): Observable<any> {
         if (JSON.parse(localStorage.getItem('currentUser'))) {
             let headers = new Headers({ 'Authorization': 'JWT  ' + JSON.parse(localStorage.getItem('currentUser')).token });
             var options = new RequestOptions({ headers: headers });
@@ -20,7 +20,7 @@ export class NewsService {
             var options = new RequestOptions({});
         }
         if (currentUser == undefined) {
-            return this.http.get('http://localhost:8000/api/news/?page='+page, options)
+            return this.http.get('http://localhost:8000/api/news/?page='+page+(search==undefined?'':'&search='+search), options)
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         } else {
