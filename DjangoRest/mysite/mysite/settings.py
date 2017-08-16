@@ -112,8 +112,11 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:4200',
     '192.168.88.201:3000',
     'localhost',
+    '192.168.1.42:4200',
     'accounts.google.com',
     '192.168.0.105:4200'
+    '192.168.88.201:4200'
+    '192.168.88.44:4200'
 )
 CORS_ALLOW_METHODS = (
     'DELETE',

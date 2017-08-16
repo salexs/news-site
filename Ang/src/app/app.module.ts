@@ -16,7 +16,7 @@ import { AuthorizationComponent } from './Components/Authorization/authorization
 import { BaseComponent } from './Components/Base/base.component';
 import { AlertComponent } from './Components/Status/status.component';
 import { HeaderComponent } from './Components/Header/header.component';
-import { DemoModalServiceFromComponent, ModalContentComponent} from './Components/CreateNewsModal/create-news-modal.component';
+import { DemoModalServiceFromComponent, ModalContentComponent,TagsComponent} from './Components/CreateNewsModal/create-news-modal.component';
 import { EditModalServiceFromComponent, EditModalContentComponent} from './Components/EditProfileModal/edit-profile-modal.component';
 import { FilterComponent } from './Components/filter/filter.component';
 import { SearchComponent } from './Components/search/search.component';
@@ -48,7 +48,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports:      [ BrowserModule,FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
-    declarations: [ NewsListComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent,Pagination, FilterComponent, SearchComponent,],
+    declarations: [ NewsListComponent,TagsComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent,Pagination, FilterComponent, SearchComponent,],
     bootstrap:    [ BaseComponent ],
     entryComponents: [ModalContentComponent,EditModalContentComponent],
     providers: [ AlertComponent,ModalContentComponent,EditModalContentComponent,FilterService, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],

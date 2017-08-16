@@ -25,6 +25,7 @@ export class NewsListComponent implements OnInit {
     paginationCountPage: number;
     currentPaginationPage: number;
     search: string;
+    filter: string;
     subscription: Subscription;
 
     newsList: News[] = [];
@@ -36,7 +37,7 @@ export class NewsListComponent implements OnInit {
         this.newsList = [];
         console.log('1',this.search)
 
-        this.newsService.getData(this.currentUser, this.currentPaginationPage, this.search).subscribe(
+        this.newsService.getData(this.currentUser, this.currentPaginationPage, this.search,this.filter).subscribe(
             data => {
                 this.currentPaginationPage = data.pageNumber;
                 this.paginationCountPage = data.countPage;
@@ -53,12 +54,12 @@ export class NewsListComponent implements OnInit {
     getData() {
         this.newsList = [];
         console.log('1',this.search)
-
-        this.newsService.getData(this.currentUser, this.currentPaginationPage,this.search).subscribe(
+        this.newsService.getData(this.currentUser, this.currentPaginationPage,this.search,this.filter).subscribe(
             data => {
                 this.currentPaginationPage = data.pageNumber;
                 this.paginationCountPage = data.countPage;
                 data.results.map(elem => {
+                    console.log(elem)
                     this.newsList.push(elem)
                 })
             },
@@ -68,7 +69,11 @@ export class NewsListComponent implements OnInit {
 
         );
     }
-
+    setFilter(filter:string) {
+        this.filter = filter;
+        this.currentPaginationPage = undefined;
+        this.getData()
+    }
     setPage(page) {
         this.currentPaginationPage = page;
         this.getData()

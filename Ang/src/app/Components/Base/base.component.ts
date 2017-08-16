@@ -26,7 +26,7 @@ import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
     template: `
                 <div>
                     <header>
-                        <div class='logo'><h1 routerLink="">Tagan News</h1></div>
+                        <div class='logo'><a href=""><h1 routerLink="">Tagan News</h1></a></div>
                         <header-comp></header-comp>
                     </header>
                     <alert></alert>

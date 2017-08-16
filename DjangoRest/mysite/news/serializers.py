@@ -47,6 +47,7 @@ class CreateNewsSerializer(ModelSerializer):
             t = Tag(text=tag["text"])
             t.save()
             news.tags.add(t)
+        news.save()
         return news
 
 class UpdateNewsSerializer(ModelSerializer):

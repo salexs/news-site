@@ -9,9 +9,18 @@ import { FilterService } from '../../Service/subjects.service';
 })
 export class SearchComponent {
   searchWord: string;
+  clickButton : boolean;
   constructor(private newsService:NewsService,private filterService:FilterService) { }
   
   Search(name:string) {
+    this.clickButton = true;
     this.filterService.Search(name);
+  }
+  ClearSearch(){
+    this.searchWord = undefined
+    if (this.clickButton){
+      this.filterService.clearSearch()
+      this.clickButton = false;
+    }
   }
 }

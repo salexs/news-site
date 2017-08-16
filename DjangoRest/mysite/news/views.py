@@ -28,7 +28,7 @@ class NewsListAPIView(ListAPIView):
             return queryset
         if 'filter' in self.request.GET:
             word = self.request.GET['filter']
-            queryset = News.objects.filter(tag = word)
+            queryset = News.objects.filter(tags__text = word)
             return queryset
         queryset = News.objects.all()    
         return queryset
@@ -37,8 +37,8 @@ class NewsCreateAPIView(CreateAPIView):
     serializer_class = CreateNewsSerializer
     queryset = News.objects.all()
     permission_classes = []
-    #def perform_create(self,serializer):
-        #serializer.save(author=self.request.user)
+    def perform_create(self,serializer):
+        serializer.save(author=self.request.user)
 
 class ChangeNewsAPIView(UpdateAPIView):
     permission_classes = []

@@ -26,8 +26,9 @@ export class Profile implements OnInit {
         this.permission = JSON.parse(localStorage.getItem('currentUser')).username == this.currentUser;
         this.profileService.GetProfile(this.currentUser).subscribe(
             data => {
+                
                 this.user = data
-                console.log(this.user)
+                localStorage.setItem('avatar',data.avatar);
             },
             error => { })
     }
@@ -40,7 +41,6 @@ export class Profile implements OnInit {
                     this.profileService.GetProfile(this.currentUser).subscribe(
                         data => {
                             this.user = data
-                            console.log(this.user)
                         },
                         error => { })
                 },
