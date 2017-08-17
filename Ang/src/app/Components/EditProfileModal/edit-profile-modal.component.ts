@@ -5,6 +5,7 @@ import { NewsService } from '../../Service/news.service';
 import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ChangeProfileService } from '../../Service/change-profile.service'
 import { ActivatedRoute } from '@angular/router';
+import { CheckProfileService } from '../../Service/subjects.service';
 
 
 @Component({
@@ -82,7 +83,7 @@ export class EditModalServiceFromComponent {
   `
 })
 export class EditModalContentComponent {
-    constructor(private activateRoute: ActivatedRoute, private newsService: NewsService, public bsModalRef: BsModalRef, private fb: FormBuilder, private changeProfileService: ChangeProfileService) { }
+    constructor(private activateRoute: ActivatedRoute,private checkProfileService:CheckProfileService, private newsService: NewsService, public bsModalRef: BsModalRef, private fb: FormBuilder, private changeProfileService: ChangeProfileService) { }
     public profileForm: FormGroup = this.fb.group({
         username: '',
         first_name: '',
@@ -99,7 +100,7 @@ export class EditModalContentComponent {
     onSubmit() {
         this.changeProfileService.updateProfile(this.profileForm.value).subscribe(
             (data) => {
-                
+                this.checkProfileService.ChangeProfile({status:data,data:this.profileForm.value});
             },
             (error) => { }
         )

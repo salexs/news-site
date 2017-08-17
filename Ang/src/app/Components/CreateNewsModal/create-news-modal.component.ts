@@ -1,8 +1,9 @@
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
-import { FormGroup, FormArray, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormArray, FormControl, FormBuilder } from '@angular/forms';
 import { NewsService } from '../../Service/news.service';
 import { Component, Input,OnInit, TemplateRef } from '@angular/core';
+import { CheckNewsService } from '../../Service/subjects.service';
 
 export class Tags {
     text = '';
@@ -83,7 +84,7 @@ export class DemoModalServiceFromComponent {
   `
 })
 export class ModalContentComponent {
-    constructor(private newsService: NewsService, public bsModalRef: BsModalRef, private fb: FormBuilder) { }
+    constructor(private newsService: NewsService,private checkNewsService:CheckNewsService, public bsModalRef: BsModalRef, private fb: FormBuilder) { }
     public form: FormGroup = this.fb.group({
         title: new FormControl(),
         text: new FormControl(),
@@ -105,16 +106,16 @@ export class ModalContentComponent {
     }
     
     save(model: any) {
-        // call API to save
-        // ...
         console.log(model);
     }
     onSubmit() {
         console.log(this.form.value)
         this.newsService.createNews(this.form.value).subscribe(
             data => {
+                this.checkNewsService.ChangeNews(data)
             },
             error => {
+
             }
         );
     }

@@ -2,8 +2,19 @@
     max-height: 300px;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 0px 20px 10px 30px;
+    padding: 0px 20px 10px 30px; 
 }
+.badge {
+    padding: 2px 2px;
+    background-color: #d35c5c;
+}
+#show:active{
+    transition: 2s;
+}
+
 #news-container {
     margin-top:50px;
+}
+.confirmation {
+    display: none;
 }

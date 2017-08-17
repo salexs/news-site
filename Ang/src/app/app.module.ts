@@ -7,9 +7,11 @@ import { Angular2SocialLoginModule } from "angular2-social-login";
 import { ModalModule } from 'ngx-bootstrap';
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CollapseModule } from 'ngx-bootstrap';
+
 
 import { Profile } from './Components/Profile/profile.component';
-import { NewsListComponent }   from './Components/News/news-list.component';
+import { NewsListComponent}   from './Components/News/news-list.component';
 import { Pagination } from './Components/Pagination/pagination.component'
 import { RegistrationComponent } from './Components/Registration/registration.component';
 import { AuthorizationComponent } from './Components/Authorization/authorization.component';
@@ -28,7 +30,7 @@ import { AuthGuard, LogOutGuard } from './Service/auth.guard';
 import { FollowAuthService } from './Service/follow-auth.service';
 import { ProfileService } from './Service/get-profile.service';
 import { ChangeProfileService } from './Service/change-profile.service';
-import { FilterService } from './Service/subjects.service';
+import { FilterService,CheckProfileService,CheckNewsService } from './Service/subjects.service';
 
 
 
@@ -47,11 +49,11 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    imports:      [ BrowserModule,FormsModule, HttpModule, RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
+    imports:      [ BrowserModule,FormsModule, HttpModule,CollapseModule.forRoot(), RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
     declarations: [ NewsListComponent,TagsComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent,Pagination, FilterComponent, SearchComponent,],
     bootstrap:    [ BaseComponent ],
     entryComponents: [ModalContentComponent,EditModalContentComponent],
-    providers: [ AlertComponent,ModalContentComponent,EditModalContentComponent,FilterService, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
+    providers: [ AlertComponent,ModalContentComponent,CheckNewsService,CheckProfileService,EditModalContentComponent,FilterService, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
 })
 export class AppModule { }
 

@@ -22,11 +22,19 @@ import { Component, OnInit, DoCheck, OnChanges } from '@angular/core';
             header .logo {
                 float:left;
             }
+            .сaption-site {
+                float:left;
+                width:215px;
+            }
     `],
     template: `
                 <div>
                     <header>
-                        <div class='logo'><a href=""><h1 routerLink="">Tagan News</h1></a></div>
+
+                        <div class='сaption-site'><a href=""><h1 routerLink="">Tagan News</h1></a></div>
+                        <div class="logo">
+                            <img src="http://cdn.onlinewebfonts.com/svg/img_22236.svg" width="45px" height="45px"/>
+                        </div>
                         <header-comp></header-comp>
                     </header>
                     <alert></alert>

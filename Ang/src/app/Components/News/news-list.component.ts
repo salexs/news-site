@@ -6,7 +6,7 @@ import { AlertService } from '../../Service/status.service'
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-import { FilterService } from '../../Service/subjects.service';
+import { FilterService,CheckNewsService } from '../../Service/subjects.service';
 import { Subscription } from 'rxjs/Subscription';
 
 
@@ -20,6 +20,7 @@ import { Subscription } from 'rxjs/Subscription';
 export class NewsListComponent implements OnInit {
 
     currentUser: string;
+    myUserName: string;
     title: string;
     text: string;
     paginationCountPage: number;
@@ -27,29 +28,17 @@ export class NewsListComponent implements OnInit {
     search: string;
     filter: string;
     subscription: Subscription;
+    showNews: string = "Show More"
 
     newsList: News[] = [];
-    constructor(private newsService: NewsService, private alertService: AlertService, private router: Router, private filterService: FilterService, private activateRoute: ActivatedRoute) {
+    constructor(private newsService: NewsService, private checkNewsService:CheckNewsService,private alertService: AlertService, private router: Router, private filterService: FilterService, private activateRoute: ActivatedRoute) {
         this.currentUser = activateRoute.snapshot.params['username'];
+        this.myUserName = JSON.parse(localStorage.getItem('currentUser')).username
+        this.subscription = this.checkNewsService.getNews().subscribe(data => {this.currentPaginationPage=this.paginationCountPage;this.getData()})
         this.subscription = this.filterService.getSearch().subscribe(data => {this.search = data;console.log(3,data);this.getData();})
     }
     ngOnInit() {
-        this.newsList = [];
-        console.log('1',this.search)
-
-        this.newsService.getData(this.currentUser, this.currentPaginationPage, this.search,this.filter).subscribe(
-            data => {
-                this.currentPaginationPage = data.pageNumber;
-                this.paginationCountPage = data.countPage;
-                data.results.map(elem => {
-                    this.newsList.push(elem)
-                })
-            },
-            error => {
-                this.alertService.error('You are not authorized!!!');
-            }
-
-        );
+        this.getData();
     }
     getData() {
         this.newsList = [];
@@ -78,9 +67,19 @@ export class NewsListComponent implements OnInit {
         this.currentPaginationPage = page;
         this.getData()
     }
-
+    
     showFullNews(news) {
         news.active = !news.active;
+        if (news.active){
+            this.showNews = 'Hide'
+        }else{
+            this.showNews = 'Show More';
+        }
+    }
+    ClearFilter(){
+        this.filter = undefined;
+        this.getData();
+        
     }
     delNewsClick(id: string): void {
         this.newsService.delNews(id).subscribe(

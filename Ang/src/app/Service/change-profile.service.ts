@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Observable } from 'rxjs/Rx';
-import { FollowAuthService } from './follow-auth.service';
+
 
 @Injectable()
 export class ChangeProfileService {
     public token: string;
-    constructor(private http: Http, private followAuthService: FollowAuthService) {
+    constructor(private http: Http) {
         var currentUser = JSON.parse(localStorage.getItem('currentUser')).username;
     }
     updateProfile(form: any): Observable<any> {
@@ -20,7 +20,11 @@ export class ChangeProfileService {
         }
         return this.http.put("http://localhost:8000/api/profile/update/" + JSON.parse(localStorage.getItem('currentUser')).username + "/", body, options)
             .map((resp: Response) => {
-                resp.json()
+                let data = resp.json()
+                
+                console.log('datas',data)
+                return data
+                
             })
             .catch((error: any) => { return Observable.throw(error.json()); });
     }

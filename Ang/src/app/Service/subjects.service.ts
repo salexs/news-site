@@ -19,3 +19,38 @@ export class FilterService {
         return this.subject.asObservable();
     }
 }
+
+@Injectable()
+export class CheckProfileService {
+    private subject = new Subject<any>();
+ 
+    ChangeProfile(obj: any) {
+        this.subject.next(obj);
+        console.log('asfdsaa',obj)
+    }
+ 
+    clearSearch() {
+        this.subject.next();
+    }
+ 
+    getProfile(): Observable<any> {
+        return this.subject.asObservable();
+    }
+}
+
+@Injectable()
+export class CheckNewsService {
+    private subject = new Subject<any>();
+ 
+    ChangeNews(obj: any) {
+        this.subject.next(obj);
+    }
+ 
+    clearSearch() {
+        this.subject.next();
+    }
+ 
+    getNews(): Observable<any> {
+        return this.subject.asObservable();
+    }
+}

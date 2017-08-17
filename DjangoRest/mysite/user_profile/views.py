@@ -43,7 +43,7 @@ class UpdateAPIView(APIView):
             skills = request.data['profile']['skills'],
         )
 
-        return Response('dsfs')
+        return Response('200')
 
 class UpdateAvatarAPIView(APIView):
     permission_classes = (IsAuthenticated,IsOwnerOrReadOnly,)

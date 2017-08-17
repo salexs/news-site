@@ -2,7 +2,8 @@ import { Component, DoCheck, OnInit, OnChanges, TemplateRef, ViewChild } from '@
 import { ActivatedRoute } from '@angular/router';
 import { ProfileService } from '../../Service/get-profile.service';
 import { ChangeProfileService } from '../../Service/change-profile.service'
-
+import { Subscription } from 'rxjs/Subscription';
+import { CheckProfileService } from '../../Service/subjects.service'
 
 @Component({
     moduleId: module.id,
@@ -12,23 +13,27 @@ import { ChangeProfileService } from '../../Service/change-profile.service'
 
 })
 export class Profile implements OnInit {
+
     currentUser: string;
     permission: boolean;
     user: any = {};
+    subscription: Subscription;
+
     @ViewChild("fileInput") fileInput;
 
 
-    constructor(private activateRoute: ActivatedRoute, private profileService: ProfileService, private changeProfileService: ChangeProfileService) {
+    constructor(private activateRoute: ActivatedRoute, private profileService: ProfileService, private checkProfileService: CheckProfileService, private changeProfileService: ChangeProfileService) {
         this.currentUser = activateRoute.snapshot.params['username'];
+        this.subscription = this.checkProfileService.getProfile().subscribe(data => {this.GetProfile(); })
+        this.permission = JSON.parse(localStorage.getItem('currentUser')).username == this.currentUser;
     }
     ngOnInit() {
-
-        this.permission = JSON.parse(localStorage.getItem('currentUser')).username == this.currentUser;
+        this.GetProfile();
+    }
+    GetProfile() {
         this.profileService.GetProfile(this.currentUser).subscribe(
             data => {
-                
                 this.user = data
-                localStorage.setItem('avatar',data.avatar);
             },
             error => { })
     }
