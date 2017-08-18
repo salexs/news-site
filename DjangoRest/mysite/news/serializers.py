@@ -59,3 +59,14 @@ class UpdateNewsSerializer(ModelSerializer):
             'text',
             'tags'
         ]
+    def update(self, validated_data):
+        tags_data = validated_data.pop('tags')
+        news = News.objects.all()
+        print(self.__dict__)
+        news.tags.all().delete()
+        for tag in tags_data:
+            t = Tag(text=tag["text"])
+            t.save()
+            news.tags.add(t)
+        news.save()
+        return news

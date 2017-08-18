@@ -67,7 +67,6 @@ export class NewsListComponent implements OnInit {
         this.currentPaginationPage = page;
         this.getData()
     }
-    
     showFullNews(news) {
         news.active = !news.active;
         if (news.active){

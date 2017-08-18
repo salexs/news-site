@@ -24,7 +24,7 @@ export class NewsService {
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         } else {
-            return this.http.get('http://localhost:8000/api/news/'+currentUser+'/?page='+page, options)
+            return this.http.get('http://localhost:8000/api/news/'+currentUser+'/?page='+page+(search==undefined?'':'&search='+search)+(filter==undefined?'':'&filter='+filter), options)
                 .map((resp: Response) => resp.json())
                 .catch((error: any) => { return Observable.throw(error); });
         }

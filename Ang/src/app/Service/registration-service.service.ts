@@ -8,7 +8,7 @@ import {User} from '../Models/registrationModel';
 export class RegistrationService {
     constructor(private http: Http) { }
 
-    postData(obj: User): Observable<any>{
+    postData(obj: any): Observable<any>{
         const body = JSON.stringify(obj);
         let headers = new Headers({ 'Content-Type': 'application/json;charset=utf-8' });
         return this.http.post("http://localhost:8000/api/users/registration/",body,{headers:headers})

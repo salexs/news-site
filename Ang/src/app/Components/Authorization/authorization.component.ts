@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '../../Models/authorizationModel';
 import { AlertService } from '../../Service/status.service';
 import { AuthService } from "angular2-social-login";
+import {RegistrationService} from '../../Service/registration-service.service'
 
 @Component({
     moduleId: module.id,
@@ -16,8 +17,8 @@ import { AuthService } from "angular2-social-login";
 
 
 export class AuthorizationComponent implements OnInit {
-    constructor(private authService: AuthServices, private router: Router, private alertService: AlertService,public _auth: AuthService) { }
-    sub : any;
+    constructor(private authService: AuthServices,private registrationService:RegistrationService, private router: Router, private alertService: AlertService, public _auth: AuthService) { }
+    sub: any;
     user: User = new User;
     user_obj: User;
     ngOnInit() {
@@ -35,14 +36,31 @@ export class AuthorizationComponent implements OnInit {
             }
             );
     }
-    signIn(provider:string){
-    this.sub = this._auth.login(provider).subscribe(
-      (data) => {
-                  console.log(data);
-                  //user data 
-                  //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
-                }
-    )
-  }
+    signIn(provider: string) {
+        console.log(provider)
+        this.sub = this._auth.login(provider).subscribe(
+            (data) => {
+                let email = data['email']
+                let username = email.slice(0, email.indexOf("@"))
+                let password = data['uid'];
+                let user = {"username":username,"email":email,"password":password}
+                this.registrationService.postData(user)
+                    .subscribe(
+                    data => {
+                        this.router.navigate(['']);
+                        
+                        this.alertService.success('Registration successful', true);
+                    },
+                    error => {
+                        this.alertService.error('Incorrect form field');
+                    }
+                    );
+                
+
+                //user data 
+                //name, image, uid, provider, uid, email, token (accessToken for Facebook & google, no token for linkedIn), idToken(only for google) 
+            }
+        )
+    }
 
 }

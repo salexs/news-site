@@ -21,7 +21,6 @@ export class Pagination implements OnChanges {
         for (var i = 1; i <= this.paginationCountPage; i++) {
             this.pagination.push(i)
         }
-
     }
     onPageChange(page: number) {
         this.changePaginationPage.next(page);

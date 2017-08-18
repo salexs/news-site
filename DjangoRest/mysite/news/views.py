@@ -44,9 +44,6 @@ class ChangeNewsAPIView(UpdateAPIView):
     permission_classes = []
     serializer_class = UpdateNewsSerializer
     queryset = News.objects.all()
-    def perform_update(self, serializer):
-        tag = self.request.data['tags']
-        serializer.save(tags=tag)
     
 class SearchNewsApiView(RetrieveAPIView):
     serializer_class = NewsListSerializer
@@ -60,8 +57,17 @@ class DetailNewsAPIView(ListAPIView):
     pagination_class = PostLimitOffsetPagination
     
     def get_queryset(self,*args,**kwargs): 
-            queryset_list = News.objects.filter(author__username=self.kwargs['author'])
-            return queryset_list
+        queryset = News.objects.filter(author__username=self.kwargs['author'])
+        if 'search' in self.request.GET:
+            word = self.request.GET['search']
+            queryset = News.objects.filter(title__icontains = word)
+            return queryset
+        if 'filter' in self.request.GET:
+            word = self.request.GET['filter']
+            queryset = News.objects.filter(tags__text = word)
+            return queryset
+        return queryset
+
 
 class DeleteAPIView(DestroyAPIView):
     queryset = News.objects.all()

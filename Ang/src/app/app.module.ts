@@ -22,10 +22,13 @@ import { DemoModalServiceFromComponent, ModalContentComponent,TagsComponent} fro
 import { EditModalServiceFromComponent, EditModalContentComponent} from './Components/EditProfileModal/edit-profile-modal.component';
 import { FilterComponent } from './Components/filter/filter.component';
 import { SearchComponent } from './Components/search/search.component';
+import { EditNewsModalServiceFromComponent,EditTagsComponent,ModalEditNewsComponent } from './Components/edit-news/edit-news.component';
+
 
 import { AlertService} from './Service/status.service';
 import { NewsService } from './Service/news.service';
 import { AuthServices } from './Service/auth-service.service';
+import { RegistrationService } from './Service/registration-service.service';
 import { AuthGuard, LogOutGuard } from './Service/auth.guard';
 import { FollowAuthService } from './Service/follow-auth.service';
 import { ProfileService } from './Service/get-profile.service';
@@ -37,7 +40,7 @@ import { FilterService,CheckProfileService,CheckNewsService } from './Service/su
 
 let providers = {
     "google": {
-      "clientId": "480176923772-v03uiebg10f4rl9gh4k208vv6ij9ac8t.apps.googleusercontent.com"
+      "clientId": "480176923772-7qa3039f59h15qifk58gnet5lpp5td8h.apps.googleusercontent.com"
     },
   };
 
@@ -50,10 +53,10 @@ const appRoutes: Routes = [
 
 @NgModule({
     imports:      [ BrowserModule,FormsModule, HttpModule,CollapseModule.forRoot(), RouterModule.forRoot(appRoutes), Angular2SocialLoginModule,ModalModule.forRoot(),FroalaEditorModule.forRoot(), FroalaViewModule.forRoot(),ReactiveFormsModule ],
-    declarations: [ NewsListComponent,TagsComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent,Pagination, FilterComponent, SearchComponent,],
+    declarations: [ NewsListComponent,ModalEditNewsComponent,EditNewsModalServiceFromComponent,EditTagsComponent,TagsComponent,EditModalServiceFromComponent, EditModalContentComponent, BaseComponent, RegistrationComponent, AuthorizationComponent, AlertComponent, HeaderComponent, Profile,DemoModalServiceFromComponent,ModalContentComponent,Pagination, FilterComponent, SearchComponent],
     bootstrap:    [ BaseComponent ],
-    entryComponents: [ModalContentComponent,EditModalContentComponent],
-    providers: [ AlertComponent,ModalContentComponent,CheckNewsService,CheckProfileService,EditModalContentComponent,FilterService, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService ],
+    entryComponents: [ModalContentComponent,EditModalContentComponent,ModalEditNewsComponent],
+    providers: [ AlertComponent,ModalContentComponent,CheckNewsService,CheckProfileService,EditModalContentComponent,FilterService, ChangeProfileService, AlertService, NewsService, AuthServices, AuthGuard,LogOutGuard, FollowAuthService, ProfileService,RegistrationService ],
 })
 export class AppModule { }
 

@@ -4,10 +4,11 @@
             <img src={{user.profile.avatar}} class="img-responsive img-circle" />
             <div class="edit-avatar" *ngIf="permission">
                 <label for="file-upload" class="custom-file-upload">
-                <input #fileInput type="file" id="file-upload" accept="image/jpeg,image/png,image/gif"/>
-                <span class="glyphicon glyphicon-camera"></span>
+                <input #fileInput type="file" id="file-upload" accept="image/jpeg,image/png,image/gif" (click)="a=true" />
+                <span class="glyphicon glyphicon-camera" ></span>
              </label>
-                <button id="add-avatar" (click)="addFile()"><span class="glyphicon glyphicon-ok"></span></button>
+                <button id="add-avatar" *ngIf="a" (click)="addFile()"><span class="glyphicon glyphicon-ok"></span></button>
+                <button id="add-avatar" *ngIf="a" (click)="a=false"><span class="glyphicon glyphicon-remove"></span></button>
             </div>
             <h6>{{user.username}}</h6>
         </div>
